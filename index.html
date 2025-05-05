@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVIF - Red de Apoyo Antifraude</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-fluid footer-pleca-superior">
+      <div class="row">
+        <div class="col">
+          <br><br>
+        </div>
+      </div>
+    </div>
+    <!-- Slider automático de portadas en la parte superior -->
+    <div class="slider-portadas-auto slider-portadas-top">
+      <img src="PORTADA/PORTADA.png" alt="Portada 1" class="slider-img active" />
+      <img src="PORTADA/PORTADA2.png" alt="Portada 2" class="slider-img" />
+      <img src="PORTADA/PORTADA3.jpg" alt="Portada 3" class="slider-img" />
+      <img src="PORTADA/PORTADA4.jpg" alt="Portada 4" class="slider-img" />
+    </div>
+    <!-- Header con logotipos centrados dentro del marco vino -->
+    <header class="header-vino">
+      <div style="display: flex; align-items: center; width: 100%; justify-content: center; position: relative;">
+        <div class="header-logos-center" style="position: absolute; left: 50%; transform: translateX(-50%); display: flex; justify-content: center; align-items: center; width: auto;">
+          <img src="LOGOTIPOS/LOGOTIPO GOB.png" alt="Gobierno de México" class="logo-header">
+          <img src="LOGOTIPOS/LOGOTIPO RA.png" alt="RA Red de Apoyo" class="logo-header">
+        </div>
+        <div style="margin-left: auto; margin-right: 40px; display: flex; gap: 18px; align-items: center;">
+          <a href="#testimonios" style="color: #fff; font-weight: bold; text-decoration: none; font-size: 1.05em;">Testimonios</a>
+          <a href="#contacto" style="color: #fff; font-weight: bold; text-decoration: none; font-size: 1.05em;">Contacto</a>
+        </div>
+      </div>
+    </header>
+    <!-- Franja inferior fija -->
+    <div class="container-fluid footer-pleca">
+      <div class="row">
+        <div class="col">
+          <br><br>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones de navegación flotantes sobre el marco superior -->
+    <div class="nav-float">
+        <a class="nav-link-float" href="#contacto">Contacto</a>
+        <a class="nav-link-float" href="#testimonios">Testimonios</a>
+    </div>
+
+    <!-- Portada -->
+    <section id="portada" class="hero-section main-content">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1>¿Quiénes somos?</h1>
+                    <p class="lead">AVIF, red de apoyo antifraude número 1. ¡Liderazgo en recuperación de fondos!</p>
+                    <h2>¿Qué hacemos?</h2>
+                    <p>Brindamos servicios para víctimas financieras que han sufrido fraudes en general. A través de páginas apócrifas o estafas presenciales, a esto se suele llamar "fraude cara a cara".</p>
+                    <div class="achievement">
+                        <h3>Más de "50 mil recuperaciones"</h3>
+                    </div>
+                </div>
+                <div class="col-lg-6 position-relative">
+                    <div class="homeheader_figure">
+                      <div class="homeheader_inset">
+                        <div id="header-globe-wrapper" style="position: relative; width: 90vw; max-width: 700px; aspect-ratio: 1/1; margin: auto; overflow: hidden;">
+                          <canvas id="globe" width="700" height="700" style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
+                          <div id="globe-testimonial-thumbs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2;"></div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Videos -->
+    <section id="testimonios" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Testimonios</h2>
+            <div class="video-carousel-wrapper">
+                <button class="carousel-arrow left" id="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="video-carousel" id="video-carousel">
+                    <!-- Los videos se cargarán dinámicamente con JavaScript -->
+                </div>
+                <button class="carousel-arrow right" id="carousel-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Contáctanos</h2>
+                    <div class="contact-info">
+                        <p><i class="fab fa-whatsapp"></i> WhatsApp: 55 1618 1754</p>
+                        <p>Extensiones:</p>
+                        <ul>
+                            <li>5588981856 Ext. 3110</li>
+                            <li>5588981856 Ext. 3220</li>
+                            <li>5588982905 Ext. 3120</li>
+                        </ul>
+                        <p><i class="fas fa-envelope"></i> iniciar@atencion-aclientes-avif.org</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-form">
+                        <h3>¿Te están pidiendo dinero?<br><span style="font-size:1.1em;font-weight:bold;">¡En este momento te atendemos!</span></h3>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="nombre" placeholder="Nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" id="numero" placeholder="Número" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+    // Slider automático de portadas
+    window.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.slider-portadas-auto .slider-img');
+      let current = 0;
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 5000);
+    });
+    </script>
+</body>
+</html> 

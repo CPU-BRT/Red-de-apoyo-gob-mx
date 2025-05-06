@@ -974,4 +974,20 @@ section {
 #apartado4 {
   background: url('MARGEN/FONDO DE APARTADO 4.png') center center repeat;
   background-size: cover;
+}
+
+@media (max-width: 800px) {
+  .video-carousel-wrapper iframe {
+    width: 100% !important;
+    height: 45vw !important; /* Relación de aspecto 16:9 */
+    min-height: 200px;
+    max-width: 100vw;
+  }
+  .video-carousel-wrapper {
+    max-width: 100vw !important;
+  }
+  .carousel-arrow {
+    font-size: 1.5em !important;
+    padding: 0 10px !important;
+  }
 } 

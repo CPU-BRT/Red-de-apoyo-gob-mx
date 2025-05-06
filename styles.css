@@ -237,6 +237,8 @@ section {
     right: 0;
     z-index: 2000;
     box-sizing: border-box;
+    margin-bottom: 0 !important;
+    border-bottom: none !important;
 }
 @media (max-width: 991px) {
     .header-vino {
@@ -337,27 +339,32 @@ section {
 }
 
 /* Franja inferior con imagen exacta del patrón proporcionado */
-.footer-vino {
+.footer-pleca {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 56px; /* Igual que .header-vino */
-    background: #611232 url('assets/franja-inferior.png') repeat-x center;
-    background-size: auto 56px;
+    height: 100px;
+    background: #611232 url('MARGEN/MARGEN INFERIOR DE LA PAGINA') repeat-x center;
+    background-size: auto 100px;
     z-index: 1000;
+    width: 100vw;
     pointer-events: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: flex-end;
 }
 @media (max-width: 991px) {
-    .footer-vino {
-        height: 34px;
-        background-size: auto 34px;
+    .footer-pleca {
+        height: 80px;
+        background-size: auto 80px;
     }
 }
 @media (max-width: 575px) {
-    .footer-vino {
-        height: 20px;
-        background-size: auto 20px;
+    .footer-pleca {
+        height: 60px;
+        background-size: auto 60px;
     }
 }
 
@@ -694,6 +701,7 @@ section {
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   overflow: hidden;
+  margin-top: 0 !important;
 }
 .slider-portadas-auto .slider-img {
   position: absolute;
@@ -799,40 +807,10 @@ section {
   height: auto !important;
 }
 
-.footer-pleca {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 80px;
-    background: #611232 url('MARGEN/MARGEN INFERIOR DE LA PAGINA') repeat-x center;
-    background-size: auto 80px;
-    z-index: 1000;
-    width: 100vw;
-    pointer-events: none;
-    padding: 0;
-    margin: 0;
-}
-
-@media (max-width: 991px) {
-    .footer-pleca {
-        height: 60px;
-        background-size: auto 60px;
-    }
-}
-
-@media (max-width: 575px) {
-    .footer-pleca {
-        height: 40px;
-        background-size: auto 40px;
-    }
-}
-
-/* Estilo de los botones de acción */
 .footer-action-buttons {
     position: absolute;
     right: 32px;
-    bottom: 20px;
+    bottom: 24px;
     display: flex;
     flex-direction: row;
     gap: 12px;
@@ -883,7 +861,7 @@ section {
 @media (max-width: 575px) {
     .footer-action-buttons {
         right: 2px;
-        bottom: 10px;
+        bottom: 8px;
         gap: 4px;
     }
     .footer-action-buttons a {

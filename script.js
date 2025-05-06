@@ -59,21 +59,21 @@ const videos = [
 
     // Botón Teléfono 1
     const btnTel1 = document.createElement('a');
-    btnTel1.href = 'tel:5588981856';
+    btnTel1.href = 'tel:5588981856,,3220';
     btnTel1.className = 'btn btn-contacto';
     btnTel1.innerHTML = '<i class="fas fa-phone"></i> Ext 3220';
     btnsContainer.appendChild(btnTel1);
 
     // Botón Teléfono 2
     const btnTel2 = document.createElement('a');
-    btnTel2.href = 'tel:5588981856';
+    btnTel2.href = 'tel:5588981856,,3110';
     btnTel2.className = 'btn btn-contacto';
     btnTel2.innerHTML = '<i class="fas fa-phone"></i> Ext 3110';
     btnsContainer.appendChild(btnTel2);
 
     // Botón Teléfono 3
     const btnTel3 = document.createElement('a');
-    btnTel3.href = 'tel:5588982905';
+    btnTel3.href = 'tel:5588982905,,3120';
     btnTel3.className = 'btn btn-contacto';
     btnTel3.innerHTML = '<i class="fas fa-phone"></i> Ext 3120';
     btnsContainer.appendChild(btnTel3);
@@ -321,25 +321,47 @@ const videos = [
             });
             thumbs = [];
             thumbsContainer.innerHTML = '';
-            const shuffled = videos.slice().sort(() => 0.5 - Math.random());
+            // Usar los videos locales de la carpeta FLOTANTES
+            let flotantes = [
+                'FLOTANTES/126.mp4',
+                'FLOTANTES/107.mp4',
+                'FLOTANTES/108.mp4',
+                'FLOTANTES/118.mp4',
+                'FLOTANTES/103.mp4',
+                'FLOTANTES/132.mp4',
+                'FLOTANTES/96.mp4',
+                'FLOTANTES/127.mp4',
+                'FLOTANTES/111.mp4',
+                'FLOTANTES/122.mp4',
+                'FLOTANTES/125.mp4',
+                'FLOTANTES/117.mp4'
+            ];
+            const shuffled = flotantes.slice().sort(() => 0.5 - Math.random());
             const selected = shuffled.slice(0, 12);
             const videoSize = 80; // px, igual que en CSS
             const radioSeguro = (Math.min(width, height) - videoSize) / 2 - 10; // margen de seguridad
-            selected.forEach((video, i) => {
+            selected.forEach((src, i) => {
                 const thumb = document.createElement('video');
                 thumb.className = 'globe-thumb';
-                thumb.src = `TESTIMONIOS/${video}`;
+                thumb.src = src;
                 thumb.muted = true;
                 thumb.loop = true;
                 thumb.autoplay = true;
                 thumb.playsInline = true;
                 thumb.setAttribute('tabindex', '-1');
-                thumb.setAttribute('title', video);
+                thumb.setAttribute('title', src);
+                thumb.style.background = '#000';
+                thumb.style.objectFit = 'cover';
+                thumb.style.width = videoSize + 'px';
+                thumb.style.height = videoSize + 'px';
                 const angle = (2 * Math.PI * i) / selected.length;
                 const x = width/2 + radioSeguro * Math.cos(angle) - videoSize/2;
                 const y = height/2 + radioSeguro * Math.sin(angle) - videoSize/2;
                 thumb.style.left = x + 'px';
                 thumb.style.top = y + 'px';
+                thumb.style.position = 'absolute';
+                thumb.style.borderRadius = '12px';
+                thumb.style.overflow = 'hidden';
                 thumbsContainer.appendChild(thumb);
                 thumbs.push({
                     element: thumb,

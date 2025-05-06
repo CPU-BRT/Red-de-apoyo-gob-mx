@@ -24,13 +24,6 @@ body {
         padding-left: 10px;
         padding-right: 10px;
     }
-    body {
-        border-top-width: 0;
-        border-right-width: 24px;
-        border-bottom-width: 24px;
-        border-left-width: 24px;
-        border-image: url('assets/PORTADA.png') 0 24 24 24 fill round;
-    }
 }
 
 @media (max-width: 575px) {
@@ -38,13 +31,6 @@ body {
         max-width: 100vw;
         padding-left: 5px;
         padding-right: 5px;
-    }
-    body {
-        border-top-width: 0;
-        border-right-width: 12px;
-        border-bottom-width: 12px;
-        border-left-width: 12px;
-        border-image: url('assets/PORTADA.png') 0 12 12 12 fill round;
     }
 }
 
@@ -97,6 +83,8 @@ body {
 /* Sección de Videos */
 #testimonios {
     background-color: white;
+    position: relative;
+    z-index: 1;
 }
 
 .video-container {
@@ -155,6 +143,8 @@ body {
 section {
     margin-top: 40px;
     margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 @media (max-width: 768px) {
@@ -234,126 +224,116 @@ section {
 
 /* Header vino para logotipos dentro del marco */
 .header-vino {
+    min-height: 80px;
+    height: 80px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #611232;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: #611232;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 2000;
     box-sizing: border-box;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    min-height: 56px;
-    height: 56px;
-    padding-top: 0 !important;
-    margin-top: 0 !important;
 }
-
-.nav-float {
-    position: fixed;
-    top: 10px;
-    right: 60px;
-    z-index: 1100;
-    display: flex;
-    gap: 18px;
-}
-
 @media (max-width: 991px) {
     .header-vino {
-        min-height: 34px;
-        height: 34px;
-    }
-    .nav-float {
-        right: 24px;
-        top: 6px;
-        gap: 12px;
+        min-height: 60px;
+        height: 60px;
     }
 }
 @media (max-width: 575px) {
     .header-vino {
-        min-height: 20px;
-        height: 20px;
-    }
-    .nav-float {
-        right: 8px;
-        top: 2px;
-        gap: 6px;
+        min-height: 40px;
+        height: 40px;
     }
 }
-
-/* Ajuste de margen superior para el contenido principal */
-.main-content {
-    margin-top: 0 !important;
-}
-@media (max-width: 991px) {
-    .main-content {
-        margin-top: 0px;
-    }
-}
-@media (max-width: 575px) {
-    .main-content {
-        margin-top: 0px;
-    }
-}
-
-.nav-link-float {
-    background: rgba(255,255,255,0.96);
-    color: #7a1335;
-    font-weight: bold;
-    padding: 6px 14px;
-    border-radius: 6px;
-    text-decoration: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    transition: background 0.2s, color 0.2s;
-    border: 1px solid #e2c6d3;
-    font-size: 1rem;
-    min-width: 90px;
-    text-align: center;
-}
-.nav-link-float:hover {
-    background: #7a1335;
-    color: #fff;
-    border: 1px solid #7a1335;
-}
-
-/* Header con logotipos centrados sobre el margen decorativo */
 .header-logos-center {
-    width: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100%;
-    position: relative;
-    padding: 0;
-    z-index: 50;
-    pointer-events: none;
-    background: none !important;
-    gap: 24px;
+    align-items: center;
+    display: flex;
 }
-.logo-header {
-    max-height: 48px;
-    width: auto;
-    pointer-events: auto;
-    background: none !important;
-    display: block;
-    margin-top: 0;
+
+/* Ajustes para el carrusel de videos */
+.video-carousel-wrapper {
+    position: relative;
+    max-width: 700px;
+    margin: auto;
+    z-index: 1;
+}
+
+.video-carousel {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #800000;
+    color: #fff;
+    border: none;
+    font-size: 2em;
+    padding: 0 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.carousel-arrow:hover {
+    background: #4a0e25;
+}
+
+.carousel-arrow.left {
+    left: 0;
+}
+
+.carousel-arrow.right {
+    right: 0;
+}
+
+/* Ajustes responsivos para el carrusel */
+@media (max-width: 600px) {
+    .video-carousel-wrapper {
+        max-width: 100%;
+    }
+    .video-carousel {
+        flex-direction: column;
+    }
+    .carousel-arrow {
+        font-size: 1.5em;
+    }
+}
+
+/* Restaurar estilos originales del header y logotipos */
+.header-content-flex {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+}
+.header-links {
+  margin-right: 32px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
 }
 @media (max-width: 991px) {
-    .logo-header {
-        max-height: 28px;
-        margin-top: 0;
-    }
+  .header-links {
+    margin-right: 8px !important;
+    gap: 8px !important;
+  }
 }
 @media (max-width: 575px) {
-    .logo-header {
-        max-height: 16px;
-        margin-top: 0;
-    }
+  .header-links {
+    margin-right: 2px !important;
+    gap: 4px !important;
+  }
 }
 
 /* Franja inferior con imagen exacta del patrón proporcionado */
@@ -459,99 +439,39 @@ section {
 
 .globe-thumb {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  border-radius: 12px;
+  width: 110px !important;
+  height: 80px !important;
+  border-radius: 12px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   border: 3px solid #fff;
   overflow: hidden;
   background: #000;
-  object-fit: cover;
   pointer-events: auto;
   transition: all 0.3s ease;
   transform-origin: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.globe-thumb video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border: none !important;
+  display: block;
+  border-radius: 12px !important;
+  background: #000;
+  margin: 0;
+  padding: 0;
 }
 
 .globe-thumb:hover {
   transform: scale(1.15) rotate(-3deg);
   z-index: 10;
   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-}
-
-.globe-thumb video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Carrusel de videos testimoniales */
-.video-carousel-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  max-width: 700px;
-  margin: 0 auto 2rem auto;
-}
-.video-carousel {
-  width: 100%;
-  max-width: 520px;
-  min-height: 340px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-.carousel-arrow {
-  background: #fff;
-  border: 1px solid #e2c6d3;
-  color: #7a1335;
-  font-size: 2rem;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: background 0.2s, color 0.2s;
-  z-index: 2;
-}
-.carousel-arrow:hover {
-  background: #7a1335;
-  color: #fff;
-}
-.carousel-arrow.left {
-  margin-right: 12px;
-}
-.carousel-arrow.right {
-  margin-left: 12px;
-}
-
-/* Video en el carrusel */
-.video-carousel .video-card {
-  min-width: 100%;
-  max-width: 100%;
-  transition: transform 0.4s;
-  margin: 0 auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-@media (max-width: 600px) {
-  .video-carousel-wrapper {
-    max-width: 98vw;
-  }
-  .video-carousel {
-    max-width: 98vw;
-    min-height: 220px;
-  }
-  .carousel-arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 1.5rem;
-  }
 }
 
 .globo-mexico {
@@ -853,11 +773,17 @@ section {
 }
 
 .hero-section.main-content {
-  margin-top: 0px !important;
+  margin-top: 80px !important;
+  padding-top: 20px;
 }
 @media (max-width: 991px) {
   .hero-section.main-content {
-    margin-top: 110px !important;
+    margin-top: 60px !important;
+  }
+}
+@media (max-width: 575px) {
+  .hero-section.main-content {
+    margin-top: 40px !important;
   }
 }
 
@@ -878,96 +804,91 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 58px;
+    height: 80px;
     background: #611232 url('MARGEN/MARGEN INFERIOR DE LA PAGINA') repeat-x center;
-    background-size: auto 58px;
+    background-size: auto 80px;
     z-index: 1000;
     width: 100vw;
     pointer-events: none;
     padding: 0;
     margin: 0;
 }
+
 @media (max-width: 991px) {
     .footer-pleca {
-        height: 34px;
-        background-size: auto 34px;
+        height: 60px;
+        background-size: auto 60px;
     }
 }
+
 @media (max-width: 575px) {
     .footer-pleca {
-        height: 20px;
-        background-size: auto 20px;
+        height: 40px;
+        background-size: auto 40px;
     }
 }
 
-.footer-pleca-superior {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 56px;
-    background: #611232 url('assets/nueva-franja.png') repeat-x center;
-    background-size: auto 56px;
-    z-index: 1000;
-    width: 100vw;
-    pointer-events: none;
-    padding: 0;
-    margin: 0;
-}
-@media (max-width: 991px) {
-    .footer-pleca-superior {
-        height: 34px;
-        background-size: auto 34px;
-    }
-}
-@media (max-width: 575px) {
-    .footer-pleca-superior {
-        height: 20px;
-        background-size: auto 20px;
-    }
-}
-
-.btn-contacto {
-    background: #611232 !important;
-    color: #fff !important;
-    border: none;
-    font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, color 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.btn-contacto:hover {
-    background: #4a0e25 !important;
-    color: #fff !important;
-    text-decoration: none;
-}
-
+/* Estilo de los botones de acción */
 .footer-action-buttons {
     position: absolute;
     right: 32px;
-    bottom: 8px;
+    bottom: 20px;
     display: flex;
     flex-direction: row;
     gap: 12px;
     z-index: 1101;
     pointer-events: auto;
 }
+
+.footer-action-buttons a {
+    background: #611232 !important;
+    color: #fff !important;
+    border: none !important;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-decoration: none;
+    outline: none;
+}
+
+.footer-action-buttons a:hover {
+    background: #4a0e25 !important;
+    color: #fff !important;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.footer-action-buttons a:focus {
+    outline: none;
+    border: none;
+}
+
 @media (max-width: 991px) {
     .footer-action-buttons {
         right: 12px;
-        bottom: 4px;
+        bottom: 15px;
         gap: 6px;
     }
+    .footer-action-buttons a {
+        font-size: 1.2rem;
+        padding: 0.4rem 0.8rem;
+    }
 }
+
 @media (max-width: 575px) {
     .footer-action-buttons {
         right: 2px;
-        bottom: 2px;
+        bottom: 10px;
         gap: 4px;
+    }
+    .footer-action-buttons a {
+        font-size: 1rem;
+        padding: 0.3rem 0.6rem;
     }
 }
 
@@ -989,5 +910,106 @@ section {
   .carousel-arrow {
     font-size: 1.5em !important;
     padding: 0 10px !important;
+  }
+}
+
+/* Eliminar estilos de botón para .btn-header */
+.btn-header { all: unset !important; }
+
+/* Eliminar ocultamiento de sliders superiores */
+.slider-portadas-auto,
+.slider-portadas-top,
+.banner-portada-top,
+.banner-portadas-multiples {
+  display: flex !important;
+  /* O el valor original que tenían, pero nunca none */
+}
+
+/* Ajustar el margen superior del contenido principal */
+.hero-section.main-content {
+    margin-top: 80px !important;
+    padding-top: 20px;
+}
+
+@media (max-width: 991px) {
+    .hero-section.main-content {
+        margin-top: 60px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-section.main-content {
+        margin-top: 40px !important;
+    }
+}
+
+/* Enlaces simples y elegantes en el header */
+.header-link {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.08em;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: background 0.18s, color 0.18s;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+.header-link:hover, .header-link:focus {
+    background: rgba(255,255,255,0.18);
+    color: #ffe0e6;
+    text-decoration: none;
+}
+.header-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-right: 32px;
+}
+@media (max-width: 991px) {
+    .header-links {
+        margin-right: 8px !important;
+        gap: 8px !important;
+    }
+    .header-link {
+        font-size: 0.98em;
+        padding: 3px 6px;
+    }
+}
+@media (max-width: 575px) {
+    .header-links {
+        margin-right: 2px !important;
+        gap: 4px !important;
+    }
+    .header-link {
+        font-size: 0.88em;
+        padding: 2px 4px;
+    }
+}
+
+/* Ajustar los logotipos del encabezado al ras del header */
+.logo-header {
+  max-height: 80px;
+  height: 80px;
+  width: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: none !important;
+  pointer-events: auto;
+}
+@media (max-width: 991px) {
+  .logo-header {
+    max-height: 60px;
+    height: 60px;
+  }
+}
+@media (max-width: 575px) {
+  .logo-header {
+    max-height: 40px;
+    height: 40px;
   }
 } 

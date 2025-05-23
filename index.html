@@ -20,9 +20,10 @@
         <a href="#contacto" class="header-link">Contacto</a>
       </nav>
     </header>
+    <div class="espaciador-header"></div>
 
     <!-- Espacio de 301px con slider tipo carrusel, solo una imagen visible -->
-    <div id="slider-carrusel" style="height:360px; width:100vw; max-width:100vw; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+    <div id="slider-carrusel" style="height:360px; width:100%; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
       <ul id="slider-carrusel-list" style="list-style:none; margin:0; padding:0; width:100%; height:100%; position:relative;">
         <li class="slider-carrusel-slide active" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:1; z-index:1; transition:opacity 500ms ease-in-out; display:list-item;">
           <img src="PORTADA/PORTADA.png" alt="Portada 1" style="width:100%; height:auto; max-height:360px; object-fit:cover; background-size:cover; text-align:center;" class="img-responsive" />
@@ -39,6 +40,17 @@
       </ul>
     </div>
 
+    <!-- Slider automático SOLO para móviles/tabletas -->
+    <div id="slider-carrusel-movil" class="slider-carrusel-movil" style="display:none;">
+      <ul id="slider-carrusel-movil-list" style="list-style:none; margin:0; padding:0; width:100%; height:100%; position:relative;">
+        <li class="slider-carrusel-movil-slide active"><img src="PORTADA/PORTADA.png" alt="Portada 1" class="img-responsive" style="width:100%;height:auto;object-fit:cover;"></li>
+        <li class="slider-carrusel-movil-slide"><img src="PORTADA/PORTADA2.png" alt="Portada 2" class="img-responsive" style="width:100%;height:auto;object-fit:cover;"></li>
+        <li class="slider-carrusel-movil-slide"><img src="PORTADA/PORTADA3.jpg" alt="Portada 3" class="img-responsive" style="width:100%;height:auto;object-fit:cover;"></li>
+        <li class="slider-carrusel-movil-slide"><img src="PORTADA/PORTADA4.jpg" alt="Portada 4" class="img-responsive" style="width:100%;height:auto;object-fit:cover;"></li>
+      </ul>
+    </div>
+    <div class="espacio-blanco-slider"></div>
+
     <!-- Portada -->
     <section id="portada" class="hero-section main-content">
         <div class="container">
@@ -53,13 +65,14 @@
                     </div>
                 </div>
                 <div class="col-lg-6 position-relative">
-                    <div class="homeheader_figure">
-                      <div class="homeheader_inset">
-                        <div id="header-globe-wrapper" style="position: relative; width: 90vw; max-width: 700px; aspect-ratio: 1/1; margin: auto; overflow: hidden;">
-                          <canvas id="globe" width="700" height="700" style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
-                          <div id="globe-testimonial-thumbs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2;"></div>
+                    <button id="btn-opinion-presidenta" class="btn btn-presidenta-vino btn-lg w-100" style="margin-top: 32px;">¿Qué opina nuestra presidenta Claudia Sheinbaum?</button>
+                    <!-- Modal personalizado -->
+                    <div id="modal-presidenta" class="modal-presidenta" style="display:none;">
+                        <div class="modal-presidenta-backdrop"></div>
+                        <div class="modal-presidenta-content">
+                            <button class="modal-presidenta-close" id="close-modal-presidenta" aria-label="Cerrar">&times;</button>
+                            <img src="CARRUSEL DE FOTOS/1.png" alt="Opinión Presidenta" class="img-fluid" style="max-width:100%; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.18);">
                         </div>
-                      </div>
                     </div>
                 </div>
             </div>
@@ -72,7 +85,9 @@
             <h2 class="text-center mb-4">Testimonios</h2>
             <div id="youtube-carousel" style="max-width: 700px; margin: 0 auto; text-align: center;">
               <button id="prev-video" style="font-size:2em; margin-right:10px;">&#8592;</button>
-              <div id="youtube-player" style="display:inline-block;"></div>
+              <div class="youtube-responsive-wrapper">
+                <div id="youtube-player" style="display:inline-block;"></div>
+              </div>
               <button id="next-video" style="font-size:2em; margin-left:10px;">&#8594;</button>
               <div id="video-title" style="margin-top:10px; font-weight:bold;">134</div>
             </div>
@@ -114,29 +129,130 @@
         </div>
     </section>
 
-    <!-- Franja inferior fija -->
-    <div class="container-fluid footer-pleca">
-      <div class="row">
-        <div class="col">
-          <br><br>
-        </div>
-      </div>
+    <!-- Footer fijo con botones de contacto -->
+    <div class="footer-action-buttons">
+        <a href="https://wa.me/525516181754" target="_blank" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:5588981856,3220" title="Llamar Ext. 3220">
+            <i class="fas fa-phone"></i> Ext 3220
+        </a>
+        <a href="tel:5588981856,3110" title="Llamar Ext. 3110">
+            <i class="fas fa-phone"></i> Ext 3110
+        </a>
+        <a href="tel:5588982905,3120" title="Llamar Ext. 3120">
+            <i class="fas fa-phone"></i> Ext 3120
+        </a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-    // Slider automático de portadas
+    // Mostrar solo en móviles/tabletas
+    function mostrarSliderMovil() {
+      var sliderMovil = document.getElementById('slider-carrusel-movil');
+      if(window.innerWidth <= 991) {
+        sliderMovil.style.display = 'block';
+      } else {
+        sliderMovil.style.display = 'none';
+      }
+    }
+    window.addEventListener('resize', mostrarSliderMovil);
+    window.addEventListener('DOMContentLoaded', mostrarSliderMovil);
+
+    // Carrusel automático
     window.addEventListener('DOMContentLoaded', function() {
-      const slides = document.querySelectorAll('.slider-portadas-auto .slider-img');
-      let current = 0;
-      setInterval(() => {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-      }, 5000);
+      var slides = document.querySelectorAll('#slider-carrusel-movil-list .slider-carrusel-movil-slide');
+      if(slides.length > 0) {
+        let current = 0;
+        setInterval(function() {
+          slides[current].classList.remove('active');
+          current = (current + 1) % slides.length;
+          slides[current].classList.add('active');
+        }, 4000);
+      }
     });
     </script>
+
+    <!-- Ocultar el slider de escritorio en móviles/tabletas -->
+    <style>
+    @media (max-width: 991px) {
+      .header-vino {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      #slider-carrusel {
+        display: none !important;
+      }
+      #slider-carrusel-movil {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: 140px !important;
+        min-height: 100px !important;
+        background: #611232 !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1001 !important;
+        overflow: hidden !important;
+        border-radius: 0 !important;
+      }
+      #slider-carrusel-movil-list {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+        background: #611232 !important;
+      }
+      .slider-carrusel-movil-slide {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100% !important;
+        opacity: 0 !important;
+        z-index: 0 !important;
+        transition: opacity 500ms ease-in-out;
+        display: list-item !important;
+      }
+      .slider-carrusel-movil-slide.active {
+        opacity: 1 !important;
+        z-index: 1 !important;
+      }
+      .slider-carrusel-movil-slide img {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: 100% !important;
+        max-height: 140px !important;
+        min-height: 100px !important;
+        object-fit: cover !important;
+        background: #611232 !important;
+        display: block !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+      }
+    }
+    @media (max-width: 575px) {
+      #slider-carrusel-movil {
+        height: 90px !important;
+        min-height: 60px !important;
+      }
+      .slider-carrusel-movil-slide img {
+        max-height: 90px !important;
+        min-height: 60px !important;
+      }
+    }
+    </style>
 </body>
 </html> 

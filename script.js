@@ -27,8 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 const videos = [
   "135.mp4", "134.mp4", "133.mp4", "132.mp4", "131.mp4", "130.mp4", "129.mp4", "128.mp4", "127.mp4", "126.mp4", "125.mp4", "124.mp4", "123.mp4", "122.mp4", "121.mp4", "120.mp4", "119.mp4", "118.mp4", "117.mp4", "116.mp4", "115.mp4", "114.mp4", "113.mp4", "112.mp4", "111.mp4", "110.mp4", "109.mp4", "108.mp4", "107.mp4", "106.mp4", "105.mp4", "104.mp4", "103.mp4", "102.mp4", "101.mp4", "100.mp4", "99.mp4", "98.mp4", "97.mp4", "96.mp4", "95.mp4", "94.mp4", "93.mp4", "92.mp4", "91.mp4", "90.mp4", "89.mp4", "88.mp4", "87.mp4", "86.mp4", "85.mp4", "84.mp4", "83.mp4", "82.mp4", "81.mp4", "80.mp4", "79.mp4", "78.mp4", "77.mp4", "76.mp4", "75.mp4", "74.mp4", "73.mp4", "72.mp4", "71.mp4", "70.mp4", "69.mp4", "68.mp4", "67.mp4", "66.mp4", "65.mp4", "64.mp4", "63.mp4", "62.mp4", "61.mp4", "60.mp4", "59.mp4", "58.mp4", "57.mp4", "56.mp4", "55.mp4", "54.mp4", "53.mp4", "52.mp4", "51.mp4", "50.mp4", "49.mp4", "48.mp4", "47.mp4", "46.mp4", "45.mp4", "44.mp4", "43.mp4", "42.mp4", "41.mp4", "40.mp4", "39.mp4", "38.mp4", "37.mp4", "36.mp4", "35.mp4", "34.mp4", "33.mp4", "32.mp4", "31.mp4", "30.mp4", "29.mp4", "28.mp4", "27.mp4", "26.mp4", "25.mp4", "24.mp4", "23.mp4", "22.mp4", "21.mp4", "20.mp4", "19.mp4", "18.mp4", "17.mp4", "16.mp4", "15.mp4", "14.mp4", "13.mp4", "12.mp4", "11.mp4", "10.mp4", "09.mp4", "08.mp4", "07.mp4", "06.mp4", "05.mp4", "04.mp4", "03.mp4", "02.mp4"
 ];
-    // Filtrar solo los videos que realmente existen en la carpeta TESTIMONIOS
-    // (En este caso, la lista ya corresponde a los archivos reales)
 
     // Botones de contacto en la franja inferior
     const btnsContainer = document.createElement('div');
@@ -79,428 +77,220 @@ const videos = [
     btnsContainer.appendChild(btnTel3);
 
     // Agregar los botones a la franja inferior
-    document.querySelector('.footer-pleca').appendChild(btnsContainer);
-
-    // Renderizar los videos
-    function renderVideos() {
-        const videoContainer = document.getElementById('video-container');
-        if (!videoContainer) return;
-        videoContainer.innerHTML = '';
-        videos.forEach((video, idx) => {
-            // Extraer fechas del nombre del archivo (si existen)
-            let fechaIzq = '', fechaDer = '';
-            const match = video.match(/(\d{2}[.\-_]\d{2}[.\-_]\d{2,4})/g);
-            if (match && match.length > 0) {
-                fechaIzq = match[0];
-                fechaDer = match.length > 1 ? match[1] : match[0];
-            }
-            // Portada personalizada: busca una imagen con el mismo nombre que el video en TESTIMONIOS (jpg o png)
-            let poster = `assets/PORTADA.jpg`;
-            const baseName = video.replace(/\.[^/.]+$/, "");
-            if (fileExists(`TESTIMONIOS/${baseName}.jpg`)) {
-                poster = `TESTIMONIOS/${baseName}.jpg`;
-            } else if (fileExists(`TESTIMONIOS/${baseName}.png`)) {
-                poster = `TESTIMONIOS/${baseName}.png`;
-            }
-            const videoWrapper = document.createElement('div');
-            videoWrapper.className = 'col-md-6 col-lg-4 mb-4';
-            videoWrapper.innerHTML = `
-                <div class=\"video-card\">
-                    <div class=\"d-flex justify-content-between mb-2\">
-                        <span class=\"fecha-izq\">${fechaIzq}</span>
-                        <span class=\"fecha-der\">${fechaDer}</span>
-                    </div>
-                    <video controls preload="none" width="100%" poster="${poster}" controlsList="nodownload">
-                        <source src="TESTIMONIOS/${video}" type="video/mp4">
-                        Tu navegador no soporta la reproducción de video.
-                    </video>
-                </div>
-            `;
-            videoContainer.appendChild(videoWrapper);
-        });
-    }
-
-    // Función para mover videos en modo borrador
-    window.moverVideo = function(idx, dir) {
-        if (!modoBorrador) return;
-        const nuevoIdx = idx + dir;
-        if (nuevoIdx < 0 || nuevoIdx >= videos.length) return;
-        const temp = videos[idx];
-        videos[idx] = videos[nuevoIdx];
-        videos[nuevoIdx] = temp;
-        renderVideos();
-    };
-
-    // Cargar videos cuando la página esté lista
-    renderVideos();
-
-    // --- CARRUSEL DE VIDEOS TESTIMONIALES ---
-    function renderVideoCarousel() {
-        const carousel = document.getElementById('video-carousel');
-        if (!carousel) return;
-        let current = 0;
-        carousel.innerHTML = '';
-        videos.forEach((video, idx) => {
-            const videoCard = document.createElement('div');
-            videoCard.className = 'video-card';
-            videoCard.style.display = idx === 0 ? 'block' : 'none';
-            let fechaIzq = '', fechaDer = '';
-            const match = video.match(/(\d{2}[.\-_]\d{2}[.\-_]\d{2,4})/g);
-            if (match && match.length > 0) {
-                fechaIzq = match[0];
-                fechaDer = match.length > 1 ? match[1] : match[0];
-            }
-            let poster = null;
-            const baseName = video.replace(/\.[^/.]+$/, "");
-            if (fileExists(`TESTIMONIOS/${baseName}.jpg`)) {
-                poster = `TESTIMONIOS/${baseName}.jpg`;
-            } else if (fileExists(`TESTIMONIOS/${baseName}.png`)) {
-                poster = `TESTIMONIOS/${baseName}.png`;
-            }
-            let videoPoster = poster;
-            if (!poster) {
-                const canvas = document.createElement('canvas');
-                canvas.width = 640;
-                canvas.height = 360;
-                const ctx = canvas.getContext('2d');
-                ctx.fillStyle = '#611232';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.font = 'bold 32px Arial';
-                ctx.fillStyle = '#fff';
-                ctx.textAlign = 'center';
-                ctx.fillText('Testimonio AVIF', canvas.width/2, canvas.height/2);
-                videoPoster = canvas.toDataURL('image/png');
-            }
-            videoCard.innerHTML = `
-                <div class=\"d-flex justify-content-between mb-2\">\n                    <span class=\"fecha-izq\">${fechaIzq}</span>\n                    <span class=\"fecha-der\">${fechaDer}</span>\n                </div>\n                <video preload=\"none\" width=\"100%\" poster=\"${videoPoster}\" controlsList=\"nodownload\">\n                    <source src=\"TESTIMONIOS/${video}\" type=\"video/mp4\">\n                    Tu navegador no soporta la reproducción de video.\n                </video>\n            `;
-            carousel.appendChild(videoCard);
-        });
-        // Navegación
-        const cards = carousel.querySelectorAll('.video-card');
-        function showCard(idx) {
-            cards.forEach((c, i) => c.style.display = i === idx ? 'block' : 'none');
-        }
-        function pauseAll() {
-            cards.forEach(card => {
-                const v = card.querySelector('video');
-                if (v) v.pause();
-            });
-        }
-        document.getElementById('carousel-prev').onclick = function() {
-            pauseAll();
-            current = (current - 1 + cards.length) % cards.length;
-            showCard(current);
-        };
-        document.getElementById('carousel-next').onclick = function() {
-            pauseAll();
-            current = (current + 1) % cards.length;
-            showCard(current);
-        };
-        // Play/pause al hacer clic en el video, y mostrar controles solo al reproducir
-        cards.forEach(card => {
-            const video = card.querySelector('video');
-            video.setAttribute('controls', 'controls');
-            video.addEventListener('click', function(e) {
-                // Solo alternar si el clic es directamente sobre el video (no controles)
-                if (e.target !== video) return;
-                if (video.paused) {
-                    video.play();
-                } else {
-                    video.pause();
-                }
-            });
-            video.addEventListener('play', function() {
-                // Pausar otros videos
-                cards.forEach(otherCard => {
-                    if (otherCard !== card) {
-                        const otherVideo = otherCard.querySelector('video');
-                        if (otherVideo) {
-                            otherVideo.pause();
-                        }
-                    }
-                });
-            });
-        });
-    }
-
-    // Función para verificar si un archivo existe (solo para imágenes de portada)
-    function fileExists(url) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('HEAD', url, false);
-        xhr.send();
-        return xhr.status != 404;
-    }
-
-    // Llama las funciones al cargar
-    renderVideos();
-    renderVideoCarousel();
-
-    // --- ANIMACIÓN DE LA ESFERA DE CARACTERES Y VIDEOS TESTIMONIALES ---
-    function initGlobe() {
-        const canvas = document.getElementById('globe');
-        let ctx = canvas.getContext('2d');
-        let width = canvas.width;
-        let height = canvas.height;
-        let rotation = 0;
-        let thumbs = [];
-        let animationId = null;
-        // Esfera de caracteres (versión anterior)
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        const latSteps = 24;
-        const lonSteps = 48;
-        const charSize = 16;
-        // Generar malla de caracteres fija
-        const charGrid = [];
-        for (let lat = 0; lat <= latSteps; lat++) {
-            const row = [];
-            for (let lon = 0; lon < lonSteps; lon++) {
-                row.push(chars[Math.floor(Math.random() * chars.length)]);
-            }
-            charGrid.push(row);
-        }
-        function stopAnimation() {
-            if (window._globeAnimationId) {
-                cancelAnimationFrame(window._globeAnimationId);
-                window._globeAnimationId = null;
-            }
-        }
-        function resizeCanvas() {
-            stopAnimation();
-            const container = canvas.parentElement;
-            const size = Math.min(container.offsetWidth, container.offsetHeight);
-            canvas.width = size;
-            canvas.height = size;
-            canvas.style.width = size + 'px';
-            canvas.style.height = size + 'px';
-            width = canvas.width;
-            height = canvas.height;
-            ctx = canvas.getContext('2d');
-            thumbs.forEach(thumb => {
-                const x = width/2 + thumb.radius * Math.cos(thumb.angle + rotation);
-                const y = height/2 + thumb.radius * Math.sin(thumb.angle + rotation);
-                thumb.element.style.left = (x - 40) + 'px';
-                thumb.element.style.top = (y - 40) + 'px';
-                thumb.radius = Math.min(width, height) * 0.35;
-            });
-            animationId = requestAnimationFrame(animate);
-            window._globeAnimationId = animationId;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        function drawCharGlobe(rot) {
-            ctx.clearRect(0, 0, width, height);
-            ctx.save();
-            ctx.translate(width/2, height/2);
-            for (let lat = 0; lat <= latSteps; lat++) {
-                const theta = Math.PI * (lat / latSteps - 0.5);
-                const y = Math.sin(theta);
-                const r = Math.cos(theta);
-                for (let lon = 0; lon < lonSteps; lon++) {
-                    const phi = 2 * Math.PI * (lon / lonSteps) + rot;
-                    const x = r * Math.cos(phi);
-                    const z = r * Math.sin(phi);
-                    const px = x * (width/2 - 30);
-                    const py = y * (height/2 - 30);
-                    const depth = 0.5 + 0.5 * z;
-                    ctx.globalAlpha = 0.25 + 0.75 * depth;
-                    ctx.font = `${charSize}px Arial`;
-                    ctx.fillStyle = '#1976d2';
-                    const char = charGrid[lat][lon];
-                    ctx.fillText(char, px - charSize/2, py + charSize/2);
-                }
-            }
-            ctx.restore();
-        }
-        function initThumbs() {
-            const thumbsContainer = document.getElementById('globe-testimonial-thumbs');
-            if (!thumbsContainer) return;
-            thumbs.forEach(thumb => {
-                if (thumb.element && thumb.element.parentNode) {
-                    thumb.element.parentNode.removeChild(thumb.element);
-                }
-            });
-            thumbs = [];
-            thumbsContainer.innerHTML = '';
-            // Usar los videos locales de la carpeta FLOTANTES
-            let flotantes = [
-                'FLOTANTES/126.mp4',
-                'FLOTANTES/107.mp4',
-                'FLOTANTES/108.mp4',
-                'FLOTANTES/103.mp4',
-                'FLOTANTES/132.mp4',
-                'FLOTANTES/96.mp4',
-                'FLOTANTES/127.mp4',
-                'FLOTANTES/111.mp4',
-                'FLOTANTES/122.mp4',
-                'FLOTANTES/125.mp4',
-                'FLOTANTES/117.mp4',
-                'FLOTANTES/121.mp4',
-                'FLOTANTES/115.mp4'
-            ];
-            const selected = flotantes.slice(0, flotantes.length); // Mostrar solo los que existen
-            const videoSize = 80; // px, igual que en CSS
-            const radioSeguro = (Math.min(width, height) - videoSize) / 2 - 10; // margen de seguridad
-            selected.forEach((src, i) => {
-                const thumb = document.createElement('video');
-                thumb.className = 'globe-thumb';
-                thumb.src = src;
-                thumb.muted = true;
-                thumb.loop = true;
-                thumb.autoplay = true;
-                thumb.playsInline = true;
-                thumb.setAttribute('tabindex', '-1');
-                thumb.setAttribute('title', src);
-                thumb.style.background = '#000';
-                thumb.style.objectFit = 'cover';
-                thumb.style.width = videoSize + 'px';
-                thumb.style.height = videoSize + 'px';
-                const angle = (2 * Math.PI * i) / selected.length;
-                const x = width/2 + radioSeguro * Math.cos(angle) - videoSize/2;
-                const y = height/2 + radioSeguro * Math.sin(angle) - videoSize/2;
-                thumb.style.left = x + 'px';
-                thumb.style.top = y + 'px';
-                thumb.style.position = 'absolute';
-                thumb.style.borderRadius = '12px';
-                thumb.style.overflow = 'hidden';
-                thumbsContainer.appendChild(thumb);
-                thumbs.push({
-                    element: thumb,
-                    angle: angle,
-                    radius: radioSeguro,
-                    speed: 0.2 + Math.random() * 0.3
-                });
-            });
-        }
-        function animate() {
-            rotation += 0.002;
-            drawCharGlobe(rotation);
-            const videoSize = 80;
-            const radioSeguro = (Math.min(width, height) - videoSize) / 2 - 10;
-            thumbs.forEach(thumb => {
-                thumb.angle += thumb.speed * 0.01;
-                thumb.radius = radioSeguro;
-                const x = width/2 + thumb.radius * Math.cos(thumb.angle + rotation) - videoSize/2;
-                const y = height/2 + thumb.radius * Math.sin(thumb.angle + rotation) - videoSize/2;
-                thumb.element.style.left = x + 'px';
-                thumb.element.style.top = y + 'px';
-                const scale = 0.5 + Math.abs(Math.cos(thumb.angle + rotation)) * 0.5;
-                thumb.element.style.transform = `scale(${scale})`;
-                thumb.element.style.opacity = scale;
-            });
-            animationId = requestAnimationFrame(animate);
-            window._globeAnimationId = animationId;
-        }
-        stopAnimation();
-        initThumbs();
-        animationId = requestAnimationFrame(animate);
-        window._globeAnimationId = animationId;
-    }
-
-    // Inicializar la esfera cuando la página esté lista
-    initGlobe();
-
-    // Slider tipo carrusel portada (solo una imagen visible)
-    const slides = document.querySelectorAll('#slider-carrusel-list .slider-carrusel-slide');
-    let current = 0;
-    setInterval(() => {
-        slides[current].style.opacity = 0;
-        slides[current].style.zIndex = -1;
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].style.opacity = 1;
-        slides[current].style.zIndex = 1;
-        slides[current].classList.add('active');
-    }, 5000);
+    // document.querySelector('.footer-pleca').appendChild(btnsContainer); // Eliminado porque ya no existe .footer-pleca
 
     // --- CARRUSEL DE VIDEOS DE YOUTUBE CON API OFICIAL ---
     const youtubeVideos = [
-      { id: 'gayzuih0yKw', title: '134' },
-      { id: '6sqYYVZtK_Q', title: '133' },
-      { id: 'wYVRdHii2CQ', title: '132' },
-      { id: '2O_TqcfiAME', title: '131' },
-      { id: 'RMmWnHbkhi4', title: '130' },
-      { id: 'iPpf1ZoGAkc', title: '129' },
-      { id: 'L-hQNLE0G1c', title: '128' },
-      { id: 'IUswzkd88eA', title: '127' },
-      { id: 'zIqjjn63rhc', title: '126' },
-      { id: 'kmQLQTEuQLQ', title: '125' }
+        { id: 'q7if-UhG654', title: '1' },
+        { id: 'MrSmFfBM3PY', title: '2' },
+        { id: 'oSjFnKd6_L4', title: '3' },
+        { id: 'kmQLQTEuQLQ', title: '4' },
+        { id: 'zIqjjn63rhc', title: '5' },
+        { id: 'IUswzkd88eA', title: '6' },
+        { id: 'L-hQNLE0G1c', title: '7' },
+        { id: 'iPpf1ZoGAkc', title: '8' },
+        { id: 'RMmWnHbkhi4', title: '9' },
+        { id: '2O_TqcfiAME', title: '10' },
+        { id: '6sqYYVZtK_Q', title: '11' },
+        { id: 'gayzuih0yKw', title: '12' },
+        { id: 'wYVRdHii2CQ', title: '13' },
+        { id: 'VfAGSePYy5U', title: '14' },
+        { id: 'eWLWnASYgE0', title: '15' },
+        { id: 'bzJoXJaNHMs', title: '16' },
+        { id: 'ed60rcQHBEw', title: '17' },
+        { id: 'PJBeIuoMXJk', title: '18' },
+        { id: 'LeKAKJM5CkY', title: '19' },
+        { id: 'wp86VdU3e1A', title: '20' },
+        { id: 'JrM_lXvfnvg', title: '21' },
+        { id: '9-iV9rN0qw8', title: '22' },
+        { id: 'lD8sPCBVvus', title: '23' },
+        { id: 'RSM9qE3S-U0', title: '24' },
+        { id: '9zezqIAynr4', title: '25' },
+        { id: '-T8Gio9Vot8', title: '26' },
+        { id: 'uEECqvVKzl0', title: '27' },
+        { id: '_h-V9Is6zJE', title: '28' },
+        { id: 'nl_ZSFcBaXo', title: '29' },
+        { id: 'B1oV8G_SAos', title: '30' },
+        { id: 'ZB2QM5pwEkY', title: '31' },
+        { id: 'UNGAXpPxeoI', title: '32' },
+        { id: 'icnbVH7jKNI', title: '33' },
+        { id: '7c7p9Yn-tBU', title: '34' },
+        { id: '9QQgguWp1KQ', title: '35' },
+        { id: 'oj5eNkvrRLE', title: '36' },
+        { id: 'Ka53qsTfCAo', title: '37' },
+        { id: 'CeW0qdYMCps', title: '38' },
+        { id: '1uk5WELteac', title: '39' },
+        { id: 'lOupeHzoBrQ', title: '40' },
+        { id: 'A0b6_GeZaJw', title: '41' },
+        { id: 'wYbo3g8WyJA', title: '42' },
+        { id: 'K0nYhLyW4GA', title: '43' },
+        { id: 'h0SSXTCEJ_c', title: '44' },
+        { id: 'bKLu5_whBVE', title: '45' },
+        { id: 'EuCTwcThFQE', title: '46' },
+        { id: 'AiG-SmPUZMI', title: '47' },
+        { id: 'SQxN8fyN1kU', title: '48' },
+        { id: 'UQgG7Pd8LG0', title: '49' },
+        { id: 'gpElkuaUjbc', title: '50' },
+        { id: '-N13TU1bFyE', title: '51' },
+        { id: 'BzQA5N7KMMI', title: '52' },
+        { id: '1RV2YTPHqlU', title: '53' },
+        { id: 'dIiAGu7Lg3s', title: '54' },
+        { id: 'kdcLepZ2dCM', title: '55' },
+        { id: 'BmgvJACpOJI', title: '56' },
+        { id: 'oXNSeVCG0Wo', title: '57' },
+        { id: 'Q891EUCdYoc', title: '58' },
+        { id: 'KD2x1FvHEws', title: '59' },
+        { id: 'XBQvaBkC5qQ', title: '60' },
+        { id: '3usLDUdxF7s', title: '61' },
+        { id: 'ig7bjiISGkM', title: '62' },
+        { id: 'St0FMvj3cJk', title: '63' },
+        { id: 'mz0xZJnavqQ', title: '64' },
+        { id: '5mxJXv4-yIw', title: '65' },
+        { id: 'QkZA0-2HCrQ', title: '66' },
+        { id: 'Hw88vi9MUIQ', title: '67' },
+        { id: 'sonitjZ2koI', title: '68' },
+        { id: 'HP6M8QDgnyY', title: '69' },
+        { id: '-cjFyMAc8SE', title: '70' },
+        { id: 'tFdrzLHIZG4', title: '71' },
+        { id: 'hXQyGHsjTdc', title: '72' },
+        { id: 'c-lBVxGKViM', title: '73' },
+        { id: 'JO6K74cPrxw', title: '74' },
+        { id: 'oHeSo7uo4oM', title: '75' },
+        { id: 'GQSmpxOhYVA', title: '76' },
+        { id: 'dme5bWEa33k', title: '77' },
+        { id: 'CBSYUgE0caA', title: '78' },
+        { id: 'E2j6YmEDG04', title: '79' },
+        { id: 'JfgR5KOECyc', title: '80' },
+        { id: 'xlo4PvDS-ic', title: '81' },
+        { id: 'KgeBn3d77wM', title: '82' }
     ];
+    let currentVideoIndex = 0;
     let ytPlayer = null;
-    let isChanging = false;
-    let nextIndex = null;
-    function setButtonsEnabled(enabled) {
-      document.getElementById('prev-video').disabled = !enabled;
-      document.getElementById('next-video').disabled = !enabled;
-    }
+
     function onYouTubeIframeAPIReady() {
-      ytPlayer = new YT.Player('youtube-player', {
-        height: '315',
-        width: '560',
-        videoId: youtubeVideos[current].id,
-        playerVars: { rel: 0, enablejsapi: 1 },
-        events: {
-          'onStateChange': onPlayerStateChange,
-          'onReady': onPlayerReady
-        }
-      });
-      updateTitle();
-      document.getElementById('prev-video').onclick = function() {
-        if (isChanging) return;
-        isChanging = true;
-        setButtonsEnabled(false);
-        nextIndex = (current - 1 + youtubeVideos.length) % youtubeVideos.length;
-        console.log('Botón PREV: intentando cargar', youtubeVideos[nextIndex].title, youtubeVideos[nextIndex].id);
-        ytPlayer.loadVideoById(youtubeVideos[nextIndex].id);
-      };
-      document.getElementById('next-video').onclick = function() {
-        if (isChanging) return;
-        isChanging = true;
-        setButtonsEnabled(false);
-        nextIndex = (current + 1) % youtubeVideos.length;
-        console.log('Botón NEXT: intentando cargar', youtubeVideos[nextIndex].title, youtubeVideos[nextIndex].id);
-        ytPlayer.loadVideoById(youtubeVideos[nextIndex].id);
-      };
+        console.log('Iniciando reproductor con video:', youtubeVideos[currentVideoIndex].id);
+        
+        ytPlayer = new YT.Player('youtube-player', {
+            height: '315',
+            width: '560',
+            videoId: youtubeVideos[currentVideoIndex].id,
+            playerVars: { 
+                rel: 0, 
+                enablejsapi: 1,
+                autoplay: 1
+            },
+            events: {
+                'onStateChange': onPlayerStateChange,
+                'onReady': onPlayerReady
+            }
+        });
+
+        // Botones de navegación
+        document.getElementById('prev-video').onclick = function() {
+            console.log('Botón PREV clickeado. Video actual:', currentVideoIndex);
+            currentVideoIndex = (currentVideoIndex - 1 + youtubeVideos.length) % youtubeVideos.length;
+            console.log('Cargando video:', currentVideoIndex, youtubeVideos[currentVideoIndex].id);
+            ytPlayer.loadVideoById(youtubeVideos[currentVideoIndex].id);
+            updateTitle();
+        };
+
+        document.getElementById('next-video').onclick = function() {
+            console.log('Botón NEXT clickeado. Video actual:', currentVideoIndex);
+            currentVideoIndex = (currentVideoIndex + 1) % youtubeVideos.length;
+            console.log('Cargando video:', currentVideoIndex, youtubeVideos[currentVideoIndex].id);
+            ytPlayer.loadVideoById(youtubeVideos[currentVideoIndex].id);
+            updateTitle();
+        };
     }
+
     function onPlayerReady(event) {
-      setButtonsEnabled(true);
-      isChanging = false;
-      if (nextIndex !== null) {
-        current = nextIndex;
+        console.log('Reproductor listo. Reproduciendo video:', currentVideoIndex);
+        event.target.playVideo();
         updateTitle();
-        console.log('onPlayerReady: video cargado', youtubeVideos[current].title, youtubeVideos[current].id);
-        nextIndex = null;
-      }
     }
+
     function onPlayerStateChange(event) {
-      if (event.data === 1) {
-        setButtonsEnabled(true);
-        isChanging = false;
-        if (nextIndex !== null) {
-          current = nextIndex;
-          updateTitle();
-          console.log('onStateChange PLAYING: video cargado', youtubeVideos[current].title, youtubeVideos[current].id);
-          nextIndex = null;
+        console.log('Estado del reproductor cambiado:', event.data);
+        
+        // Cuando el video termina
+        if (event.data === YT.PlayerState.ENDED) {
+            console.log('Video terminado. Video actual:', currentVideoIndex);
+            // Avanzar al siguiente video
+            currentVideoIndex = (currentVideoIndex + 1) % youtubeVideos.length;
+            console.log('Cargando siguiente video:', currentVideoIndex, youtubeVideos[currentVideoIndex].id);
+            // Cargar y reproducir el siguiente video
+            ytPlayer.loadVideoById(youtubeVideos[currentVideoIndex].id);
+            updateTitle();
         }
-      }
-      if (event.data === 0) {
-        if (isChanging) {
-          isChanging = false;
-          return;
-        }
-        isChanging = true;
-        setButtonsEnabled(false);
-        nextIndex = (current + 1) % youtubeVideos.length;
-        console.log('onStateChange ENDED: intentando cargar', youtubeVideos[nextIndex].title, youtubeVideos[nextIndex].id);
-        ytPlayer.loadVideoById(youtubeVideos[nextIndex].id);
-      }
     }
+
     function updateTitle() {
-      const titleDiv = document.getElementById('video-title');
-      if (titleDiv) titleDiv.textContent = youtubeVideos[current].title;
+        const titleDiv = document.getElementById('video-title');
+        if (titleDiv) {
+            titleDiv.textContent = youtubeVideos[currentVideoIndex].title;
+            console.log('Título actualizado:', youtubeVideos[currentVideoIndex].title);
+        }
     }
+
+    // Asegurarnos de que la API de YouTube esté cargada
     if (window.YT && window.YT.Player) {
-      onYouTubeIframeAPIReady();
+        onYouTubeIframeAPIReady();
     } else {
-      window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+    }
+
+    // Slider tipo carrusel portada (solo una imagen visible)
+    const slides = document.querySelectorAll('#slider-carrusel-list .slider-carrusel-slide');
+    if (slides.length > 0) {
+        let current = 0;
+        setInterval(() => {
+            slides[current].style.opacity = 0;
+            slides[current].style.zIndex = -1;
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].style.opacity = 1;
+            slides[current].style.zIndex = 1;
+            slides[current].classList.add('active');
+        }, 5000);
+    }
+
+    // Modal personalizado para opinión de la presidenta
+    const btnModal = document.getElementById('btn-opinion-presidenta');
+    const modal = document.getElementById('modal-presidenta');
+    const closeModal = document.getElementById('close-modal-presidenta');
+    if (btnModal && modal && closeModal) {
+        btnModal.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(function() {
+                modal.style.display = 'flex';
+                if (window.innerWidth <= 991) {
+                  document.body.style.overflow = 'hidden';
+                  document.documentElement.style.overflow = 'hidden';
+                } else {
+                  document.body.style.overflow = 'hidden';
+                }
+            }, 350);
+        });
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            if (window.innerWidth <= 991) {
+              document.body.style.overflow = '';
+              document.documentElement.style.overflow = '';
+            } else {
+              document.body.style.overflow = '';
+            }
+        });
+        // Cerrar modal al hacer clic fuera del contenido
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal || e.target.classList.contains('modal-presidenta-backdrop')) {
+                modal.style.display = 'none';
+                if (window.innerWidth <= 991) {
+                  document.body.style.overflow = '';
+                  document.documentElement.style.overflow = '';
+                } else {
+                  document.body.style.overflow = '';
+                }
+            }
+        });
     }
 });

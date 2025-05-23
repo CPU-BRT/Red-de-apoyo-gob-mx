@@ -10,6 +10,9 @@ body {
     box-sizing: border-box;
     margin-top: 0 !important;
     padding-top: 0 !important;
+    overflow-x: hidden !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
 }
 
 .container {
@@ -27,7 +30,7 @@ body {
         padding-right: 10px;
     }
     body {
-        padding-top: 50px !important;
+        padding-top: 0 !important;
     }
 }
 
@@ -38,7 +41,7 @@ body {
         padding-right: 5px;
     }
     body {
-        padding-top: 38px !important;
+        padding-top: 0 !important;
     }
 }
 
@@ -235,11 +238,12 @@ section {
     background: #611232 !important;
     height: 65px;
     margin-bottom: 0 !important;
-    position: static !important;
-    z-index: auto !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
+    position: fixed !important;
+    z-index: 1000 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw;
 }
 
 .logo-header {
@@ -255,15 +259,14 @@ section {
 
 @media (max-width: 991px) {
     .header-vino {
-        height: 50px;
-    }
-    .logo-header {
-        max-height: 50px;
-        height: 50px;
-    }
-    .slider-portadas-auto,
-    .slider-portadas-top {
-        margin-top: 90px !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        z-index: 9999 !important;
+        height: 50px !important;
+        min-height: 50px !important;
+        max-height: 50px !important;
     }
     body {
         padding-top: 50px !important;
@@ -271,15 +274,14 @@ section {
 }
 @media (max-width: 575px) {
     .header-vino {
-        height: 38px;
-    }
-    .logo-header {
-        max-height: 38px;
-        height: 38px;
-    }
-    .slider-portadas-auto,
-    .slider-portadas-top {
-        margin-top: 60px !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        z-index: 9999 !important;
+        height: 38px !important;
+        min-height: 38px !important;
+        max-height: 38px !important;
     }
     body {
         padding-top: 38px !important;
@@ -422,15 +424,15 @@ section {
 
 /* Estilos de la esfera y videos testimoniales */
 .homeheader_figure {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   min-height: 400px;
   height: 500px !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: none !important;
   z-index: 10;
+  margin-top: 140px;
 }
 
 .homeheader_inset {
@@ -445,13 +447,12 @@ section {
 #header-globe-wrapper {
   position: relative;
   width: 100%;
-  height: 100%;
-  min-height: 400px;
+  max-width: 400px;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: none !important;
-  z-index: 20;
+  justify-content: center;
 }
 
 #globe {
@@ -748,12 +749,13 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255,255,255,0.95);
+  background: #611232 !important;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   overflow: hidden;
-  margin: 0 auto 0 auto !important;
+  margin: 0 auto 24px auto !important;
   padding: 0;
+  border-top: 3px solid #611232 !important;
 }
 
 .slider-portadas-auto .slider-img {
@@ -815,6 +817,7 @@ section {
   z-index: 1100;
   margin-top: 0 !important;
   padding-top: 0 !important;
+  border-top: 3px solid #611232 !important;
 }
 .slider-portadas-top .slider-img {
   width: 100vw;
@@ -849,7 +852,7 @@ section {
 }
 
 .hero-section.main-content {
-  margin-top: 80px !important;
+  margin-top: 85px !important;
   padding-top: 20px;
 }
 @media (max-width: 991px) {
@@ -859,7 +862,8 @@ section {
 }
 @media (max-width: 575px) {
   .hero-section.main-content {
-    margin-top: 40px !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 }
 
@@ -976,7 +980,7 @@ section {
 
 /* Ajustar el margen superior del contenido principal */
 .hero-section.main-content {
-    margin-top: 80px !important;
+    margin-top: 85px !important;
     padding-top: 20px;
 }
 
@@ -988,7 +992,8 @@ section {
 
 @media (max-width: 575px) {
     .hero-section.main-content {
-        margin-top: 40px !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
     }
 }
 
@@ -1062,4 +1067,522 @@ section {
 body {
   padding-top: 0 !important;
   margin-top: 0 !important;
+}
+
+/* Ajuste responsivo para el slider-carrusel en móviles */
+@media (max-width: 575px) {
+  .header-vino {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  #slider-carrusel {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    display: flex !important;
+    align-items: stretch !important;
+  }
+  #slider-carrusel img {
+    height: auto !important;
+    max-height: none !important;
+    width: 100% !important;
+    object-fit: contain !important;
+    background: transparent !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+  section.hero-section.main-content {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+@media (min-width: 576px) {
+  #slider-carrusel {
+    height: 360px !important;
+    max-height: 360px !important;
+  }
+}
+
+/* Video de YouTube responsivo */
+.youtube-responsive-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Proporción 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+.youtube-responsive-wrapper iframe,
+.youtube-responsive-wrapper #youtube-player {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100vw !important;
+  max-height: 100vw !important;
+  border: 0;
+  display: block;
+}
+@media (max-width: 575px) {
+  #youtube-carousel {
+    max-width: 100vw !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 8px !important;
+  }
+  .youtube-responsive-wrapper {
+    margin-bottom: 4px !important;
+  }
+  #video-title {
+    margin-top: 4px !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Forzar iframe de YouTube responsivo dentro del carrusel */
+#youtube-player iframe {
+  width: 100% !important;
+  max-width: 100vw !important;
+  height: 56vw !important;
+  max-height: 60vw !important;
+  min-height: 180px;
+  display: block;
+  margin: 0 auto;
+  border: none;
+}
+@media (min-width: 576px) {
+  #youtube-player iframe {
+    height: 315px !important;
+    max-width: 560px !important;
+    max-height: 315px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  section {
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .contact-info, .contact-form {
+    padding: 1rem !important;
+    margin-bottom: 8px !important;
+  }
+  .achievement {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+#slider-carrusel {
+  margin-top: 30px !important;
+  background: #611232;
+}
+#slider-carrusel ul {
+  background: #611232 !important;
+}
+
+@media (max-width: 991px) {
+  #slider-carrusel {
+    margin-top: 30px !important;
+    background: #611232;
+  }
+}
+@media (max-width: 575px) {
+  #slider-carrusel {
+    margin-top: 0 !important;
+  }
+}
+
+.slider-portadas-auto {
+  background: #611232 !important;
+}
+
+.banner-portadas-multiples {
+  background: #611232 !important;
+}
+
+.banner-presidencia-unico img,
+.slider-banner-row img,
+.banner-portadas-multiples img {
+  background: #611232 !important;
+}
+
+.header-vino, #slider-carrusel {
+  border-bottom: none !important;
+  border-top: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 600px) {
+  #header-globe-wrapper {
+    max-width: 90vw;
+    min-width: 220px;
+    margin: 0 auto;
+  }
+  .homeheader_figure {
+    min-height: 260px;
+    height: 320px !important;
+    margin-top: 100px;
+  }
+}
+
+/* Slider portada en sección portada */
+.slider-carrusel-portada {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    height: 420px !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10) !important;
+    background: #fff !important;
+    display: block !important;
+}
+.slider-portada-img {
+    position: absolute !important;
+    top: 0 !important; left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.7s !important;
+    border-radius: 16px !important;
+    z-index: 1 !important;
+    display: none !important;
+}
+.slider-portada-img.active {
+    opacity: 1 !important;
+    z-index: 2 !important;
+    pointer-events: auto !important;
+    display: block !important;
+}
+@media (max-width: 991px) {
+    .slider-carrusel-portada {
+        max-width: 90vw !important;
+        height: 260px !important;
+    }
+}
+@media (max-width: 575px) {
+    .slider-carrusel-portada {
+        max-width: 98vw !important;
+        height: 180px !important;
+    }
+}
+
+/* Refuerzo para el modal de la presidenta */
+#modal-presidenta {
+  display: none;
+  position: fixed !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3000 !important;
+  background: rgba(0,0,0,0.75);
+  align-items: center;
+  justify-content: center;
+}
+#modal-presidenta[style*="display: flex"] {
+  display: flex !important;
+}
+.modal-presidenta-content {
+  position: relative !important;
+  z-index: 3100 !important;
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px 16px 16px 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+@media (max-width: 600px) {
+  .modal-presidenta-content {
+    padding: 8px 2px 2px 2px;
+    max-width: 99vw;
+    max-height: 80vh;
+  }
+  .modal-presidenta-content img {
+    max-width: 98vw;
+    max-height: 60vh;
+  }
+}
+
+.btn-presidenta-vino {
+    background-color: transparent !important;
+    color: #611232 !important;
+    border: 2px solid #611232 !important;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.btn-presidenta-vino:hover, .btn-presidenta-vino:focus {
+    background-color: #611232 !important;
+    color: #fff !important;
+    border: 2px solid #611232 !important;
+    text-decoration: none;
+}
+
+@media (max-width: 575px) {
+  .header-vino {
+    height: 38px;
+  }
+  .logo-header {
+    max-height: 38px;
+    height: 38px;
+  }
+  .slider-portadas-auto,
+  .slider-portadas-top {
+    margin-top: 60px !important;
+  }
+  body {
+    padding-top: 0 !important;
+  }
+  #slider-carrusel {
+    height: 180px !important;
+    max-height: 220px !important;
+    min-height: 120px !important;
+    margin-top: 0 !important;
+    background: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #slider-carrusel img {
+    max-height: 220px !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background: #fff !important;
+  }
+  section.hero-section.main-content {
+    margin-top: 40px !important;
+  }
+}
+
+/* Ajustes solo para móviles */
+@media (max-width: 600px) {
+  body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  .container, .container-fluid, .row, .col-lg-6, .col, .main-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+  section, #slider-carrusel, #portada, #testimonios, #contacto {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+  /* Botón Contacto en el header */
+  .header-links {
+    width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 8px !important;
+    justify-content: flex-end !important;
+  }
+  .header-link {
+    padding: 8px 12px !important;
+    font-size: 1em;
+    border-radius: 6px;
+    background: none;
+    color: #fff;
+    display: inline-block;
+  }
+  /* Header fijo */
+  .header-vino {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    z-index: 1000;
+  }
+  body {
+    padding-top: 70px !important; /* Ajusta según la altura de tu header */
+  }
+  /* Carrusel pegado al header */
+  #slider-carrusel {
+    margin-top: 0 !important;
+  }
+  /* ¿Quiénes somos? pegado al carrusel */
+  #portada {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-links {
+    gap: 1px !important;
+    margin-right: 1px !important;
+    flex-wrap: wrap !important;
+  }
+  .header-link {
+    font-size: 0.78em !important;
+    padding: 1px 2px !important;
+    min-width: 54px;
+    text-align: center;
+    letter-spacing: 0;
+    word-break: break-word;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-presidenta-content {
+    padding-top: 0;
+    max-width: 900px;
+  }
+  .modal-presidenta-content img {
+    margin-top: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  }
+  .modal-presidenta-close {
+    top: 8px !important;
+    right: 8px !important;
+    z-index: 9999 !important;
+  }
+  .modal-presidenta-content img {
+    max-width: 540px;
+    max-height: 80vh;
+  }
+}
+
+@media (max-width: 991px) {
+  body {
+    padding-top: 0 !important;
+  }
+  #slider-carrusel-movil {
+    margin-top: 50px !important;
+  }
+}
+@media (max-width: 575px) {
+  body {
+    padding-top: 0 !important;
+  }
+  #slider-carrusel-movil {
+    margin-top: 38px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .espaciador-header {
+    width: 100vw;
+    height: 50px;
+    display: block;
+  }
+}
+@media (max-width: 575px) {
+  .espaciador-header {
+    height: 38px;
+  }
+}
+
+@media (max-width: 991px) {
+  .espacio-blanco-slider {
+    width: 100vw;
+    height: 32px;
+    background: #fff;
+    display: block;
+  }
+}
+@media (max-width: 575px) {
+  .espacio-blanco-slider {
+    height: 24px;
+  }
+}
+
+@media (max-width: 991px) {
+  .header-vino {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    z-index: 1030 !important;
+    background: #611232 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
+@media (max-width: 575px) {
+  .header-vino {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    z-index: 1030 !important;
+    background: #611232 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .header-layout-flex {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
+@media (max-width: 575px) {
+  .header-layout-flex {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
+
+@media (max-width: 991px) {
+  #modal-presidenta {
+    background: rgba(0,0,0,0.85) !important;
+    box-shadow: 0 0 0 100vw rgba(0,0,0,0.85) !important;
+    backdrop-filter: blur(2px);
+  }
+  .modal-presidenta-content {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;
+  }
+}
+@media (max-width: 575px) {
+  #modal-presidenta {
+    background: rgba(0,0,0,0.92) !important;
+    box-shadow: 0 0 0 100vw rgba(0,0,0,0.92) !important;
+    backdrop-filter: blur(2px);
+  }
+  .modal-presidenta-content {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.55) !important;
+  }
 } 

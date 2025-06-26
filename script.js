@@ -258,44 +258,4 @@ const videos = [
             slides[current].classList.add('active');
         }, 5000);
     }
-
-    // Modal personalizado para opinión de la presidenta
-    const btnModal = document.getElementById('btn-opinion-presidenta');
-    const modal = document.getElementById('modal-presidenta');
-    const closeModal = document.getElementById('close-modal-presidenta');
-    if (btnModal && modal && closeModal) {
-        btnModal.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setTimeout(function() {
-                modal.style.display = 'flex';
-                if (window.innerWidth <= 991) {
-                  document.body.style.overflow = 'hidden';
-                  document.documentElement.style.overflow = 'hidden';
-                } else {
-                  document.body.style.overflow = 'hidden';
-                }
-            }, 350);
-        });
-        closeModal.addEventListener('click', function() {
-            modal.style.display = 'none';
-            if (window.innerWidth <= 991) {
-              document.body.style.overflow = '';
-              document.documentElement.style.overflow = '';
-            } else {
-              document.body.style.overflow = '';
-            }
-        });
-        // Cerrar modal al hacer clic fuera del contenido
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal || e.target.classList.contains('modal-presidenta-backdrop')) {
-                modal.style.display = 'none';
-                if (window.innerWidth <= 991) {
-                  document.body.style.overflow = '';
-                  document.documentElement.style.overflow = '';
-                } else {
-                  document.body.style.overflow = '';
-                }
-            }
-        });
-    }
 });

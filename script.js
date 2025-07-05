@@ -81,93 +81,88 @@ const videos = [
 
     // --- CARRUSEL DE VIDEOS DE YOUTUBE CON API OFICIAL ---
     const youtubeVideos = [
-        { id: 'rupwv2W1Qec', title: '1' },
-        { id: 'I8iyua0SUwM', title: '2' },
-        { id: 'D9-gHvhsLkM', title: '3' },
-        { id: 'J-YtggCoBLk', title: '4' },
-        { id: 'BLxLy9OZ3vc', title: '5' },
-        { id: 'q7if-UhG654', title: '6' },
-        { id: 'MrSmFfBM3PY', title: '7' },
-        { id: 'oSjFnKd6_L4', title: '8' },
-        { id: 'kmQLQTEuQLQ', title: '9' },
-        { id: 'zIqjjn63rhc', title: '10' },
-        { id: 'IUswzkd88eA', title: '11' },
-        { id: 'L-hQNLE0G1c', title: '12' },
-        { id: 'iPpf1ZoGAkc', title: '13' },
-        { id: 'RMmWnHbkhi4', title: '14' },
-        { id: '2O_TqcfiAME', title: '15' },
-        { id: '6sqYYVZtK_Q', title: '16' },
-        { id: 'gayzuih0yKw', title: '17' },
-        { id: 'wYVRdHii2CQ', title: '18' },
-        { id: 'VfAGSePYy5U', title: '19' },
-        { id: 'eWLWnASYgE0', title: '20' },
-        { id: 'bzJoXJaNHMs', title: '21' },
-        { id: 'ed60rcQHBEw', title: '22' },
-        { id: 'PJBeIuoMXJk', title: '23' },
-        { id: 'LeKAKJM5CkY', title: '24' },
-        { id: 'wp86VdU3e1A', title: '25' },
-        { id: 'JrM_lXvfnvg', title: '26' },
-        { id: '9-iV9rN0qw8', title: '27' },
-        { id: 'lD8sPCBVvus', title: '28' },
-        { id: 'RSM9qE3S-U0', title: '29' },
-        { id: '9zezqIAynr4', title: '30' },
-        { id: '-T8Gio9Vot8', title: '31' },
-        { id: 'uEECqvVKzl0', title: '32' },
-        { id: '_h-V9Is6zJE', title: '33' },
-        { id: 'nl_ZSFcBaXo', title: '34' },
-        { id: 'B1oV8G_SAos', title: '35' },
-        { id: 'ZB2QM5pwEkY', title: '36' },
-        { id: 'UNGAXpPxeoI', title: '37' },
-        { id: 'icnbVH7jKNI', title: '38' },
-        { id: '7c7p9Yn-tBU', title: '39' },
-        { id: '9QQgguWp1KQ', title: '40' },
-        { id: 'oj5eNkvrRLE', title: '41' },
-        { id: 'Ka53qsTfCAo', title: '42' },
-        { id: 'CeW0qdYMCps', title: '43' },
-        { id: '1uk5WELteac', title: '44' },
-        { id: 'lOupeHzoBrQ', title: '45' },
-        { id: 'A0b6_GeZaJw', title: '46' },
-        { id: 'wYbo3g8WyJA', title: '47' },
-        { id: 'K0nYhLyW4GA', title: '48' },
-        { id: 'h0SSXTCEJ_c', title: '49' },
-        { id: 'bKLu5_whBVE', title: '50' },
-        { id: 'EuCTwcThFQE', title: '51' },
-        { id: 'AiG-SmPUZMI', title: '52' },
-        { id: 'SQxN8fyN1kU', title: '53' },
-        { id: 'UQgG7Pd8LG0', title: '54' },
-        { id: 'gpElkuaUjbc', title: '55' },
-        { id: '-N13TU1bFyE', title: '56' },
-        { id: 'BzQA5N7KMMI', title: '57' },
-        { id: '1RV2YTPHqlU', title: '58' },
-        { id: 'dIiAGu7Lg3s', title: '59' },
-        { id: 'kdcLepZ2dCM', title: '60' },
-        { id: 'BmgvJACpOJI', title: '61' },
-        { id: 'oXNSeVCG0Wo', title: '62' },
-        { id: 'Q891EUCdYoc', title: '63' },
-        { id: 'KD2x1FvHEws', title: '64' },
-        { id: 'XBQvaBkC5qQ', title: '65' },
-        { id: '3usLDUdxF7s', title: '66' },
-        { id: 'ig7bjiISGkM', title: '67' },
-        { id: 'St0FMvj3cJk', title: '68' },
-        { id: 'mz0xZJnavqQ', title: '69' },
-        { id: '5mxJXv4-yIw', title: '70' },
-        { id: 'QkZA0-2HCrQ', title: '71' },
-        { id: 'Hw88vi9MUIQ', title: '72' },
-        { id: 'sonitjZ2koI', title: '73' },
-        { id: 'HP6M8QDgnyY', title: '74' },
-        { id: '-cjFyMAc8SE', title: '75' },
-        { id: 'tFdrzLHIZG4', title: '76' },
-        { id: 'hXQyGHsjTdc', title: '77' },
-        { id: 'c-lBVxGKViM', title: '78' },
-        { id: 'JO6K74cPrxw', title: '79' },
-        { id: 'oHeSo7uo4oM', title: '80' },
-        { id: 'GQSmpxOhYVA', title: '81' },
-        { id: 'dme5bWEa33k', title: '82' },
-        { id: 'CBSYUgE0caA', title: '83' },
-        { id: 'E2j6YmEDG04', title: '84' },
-        { id: 'JfgR5KOECyc', title: '85' },
-        { id: 'xlo4PvDS-ic', title: '86' },
-        { id: 'KgeBn3d77wM', title: '87' }
+        { id: 'q7if-UhG654', title: '1' },
+        { id: 'MrSmFfBM3PY', title: '2' },
+        { id: 'oSjFnKd6_L4', title: '3' },
+        { id: 'kmQLQTEuQLQ', title: '4' },
+        { id: 'zIqjjn63rhc', title: '5' },
+        { id: 'IUswzkd88eA', title: '6' },
+        { id: 'L-hQNLE0G1c', title: '7' },
+        { id: 'iPpf1ZoGAkc', title: '8' },
+        { id: 'RMmWnHbkhi4', title: '9' },
+        { id: '2O_TqcfiAME', title: '10' },
+        { id: '6sqYYVZtK_Q', title: '11' },
+        { id: 'gayzuih0yKw', title: '12' },
+        { id: 'wYVRdHii2CQ', title: '13' },
+        { id: 'VfAGSePYy5U', title: '14' },
+        { id: 'eWLWnASYgE0', title: '15' },
+        { id: 'bzJoXJaNHMs', title: '16' },
+        { id: 'ed60rcQHBEw', title: '17' },
+        { id: 'PJBeIuoMXJk', title: '18' },
+        { id: 'LeKAKJM5CkY', title: '19' },
+        { id: 'wp86VdU3e1A', title: '20' },
+        { id: 'JrM_lXvfnvg', title: '21' },
+        { id: '9-iV9rN0qw8', title: '22' },
+        { id: 'lD8sPCBVvus', title: '23' },
+        { id: 'RSM9qE3S-U0', title: '24' },
+        { id: '9zezqIAynr4', title: '25' },
+        { id: '-T8Gio9Vot8', title: '26' },
+        { id: 'uEECqvVKzl0', title: '27' },
+        { id: '_h-V9Is6zJE', title: '28' },
+        { id: 'nl_ZSFcBaXo', title: '29' },
+        { id: 'B1oV8G_SAos', title: '30' },
+        { id: 'ZB2QM5pwEkY', title: '31' },
+        { id: 'UNGAXpPxeoI', title: '32' },
+        { id: 'icnbVH7jKNI', title: '33' },
+        { id: '7c7p9Yn-tBU', title: '34' },
+        { id: '9QQgguWp1KQ', title: '35' },
+        { id: 'oj5eNkvrRLE', title: '36' },
+        { id: 'Ka53qsTfCAo', title: '37' },
+        { id: 'CeW0qdYMCps', title: '38' },
+        { id: '1uk5WELteac', title: '39' },
+        { id: 'lOupeHzoBrQ', title: '40' },
+        { id: 'A0b6_GeZaJw', title: '41' },
+        { id: 'wYbo3g8WyJA', title: '42' },
+        { id: 'K0nYhLyW4GA', title: '43' },
+        { id: 'h0SSXTCEJ_c', title: '44' },
+        { id: 'bKLu5_whBVE', title: '45' },
+        { id: 'EuCTwcThFQE', title: '46' },
+        { id: 'AiG-SmPUZMI', title: '47' },
+        { id: 'SQxN8fyN1kU', title: '48' },
+        { id: 'UQgG7Pd8LG0', title: '49' },
+        { id: 'gpElkuaUjbc', title: '50' },
+        { id: '-N13TU1bFyE', title: '51' },
+        { id: 'BzQA5N7KMMI', title: '52' },
+        { id: '1RV2YTPHqlU', title: '53' },
+        { id: 'dIiAGu7Lg3s', title: '54' },
+        { id: 'kdcLepZ2dCM', title: '55' },
+        { id: 'BmgvJACpOJI', title: '56' },
+        { id: 'oXNSeVCG0Wo', title: '57' },
+        { id: 'Q891EUCdYoc', title: '58' },
+        { id: 'KD2x1FvHEws', title: '59' },
+        { id: 'XBQvaBkC5qQ', title: '60' },
+        { id: '3usLDUdxF7s', title: '61' },
+        { id: 'ig7bjiISGkM', title: '62' },
+        { id: 'St0FMvj3cJk', title: '63' },
+        { id: 'mz0xZJnavqQ', title: '64' },
+        { id: '5mxJXv4-yIw', title: '65' },
+        { id: 'QkZA0-2HCrQ', title: '66' },
+        { id: 'Hw88vi9MUIQ', title: '67' },
+        { id: 'sonitjZ2koI', title: '68' },
+        { id: 'HP6M8QDgnyY', title: '69' },
+        { id: '-cjFyMAc8SE', title: '70' },
+        { id: 'tFdrzLHIZG4', title: '71' },
+        { id: 'hXQyGHsjTdc', title: '72' },
+        { id: 'c-lBVxGKViM', title: '73' },
+        { id: 'JO6K74cPrxw', title: '74' },
+        { id: 'oHeSo7uo4oM', title: '75' },
+        { id: 'GQSmpxOhYVA', title: '76' },
+        { id: 'dme5bWEa33k', title: '77' },
+        { id: 'CBSYUgE0caA', title: '78' },
+        { id: 'E2j6YmEDG04', title: '79' },
+        { id: 'JfgR5KOECyc', title: '80' },
+        { id: 'xlo4PvDS-ic', title: '81' },
+        { id: 'KgeBn3d77wM', title: '82' }
     ];
     let currentVideoIndex = 0;
     let ytPlayer = null;
@@ -257,5 +252,45 @@ const videos = [
             slides[current].style.zIndex = 1;
             slides[current].classList.add('active');
         }, 5000);
+    }
+
+    // Modal personalizado para opinión de la presidenta
+    const btnModal = document.getElementById('btn-opinion-presidenta');
+    const modal = document.getElementById('modal-presidenta');
+    const closeModal = document.getElementById('close-modal-presidenta');
+    if (btnModal && modal && closeModal) {
+        btnModal.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(function() {
+                modal.style.display = 'flex';
+                if (window.innerWidth <= 991) {
+                  document.body.style.overflow = 'hidden';
+                  document.documentElement.style.overflow = 'hidden';
+                } else {
+                  document.body.style.overflow = 'hidden';
+                }
+            }, 350);
+        });
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            if (window.innerWidth <= 991) {
+              document.body.style.overflow = '';
+              document.documentElement.style.overflow = '';
+            } else {
+              document.body.style.overflow = '';
+            }
+        });
+        // Cerrar modal al hacer clic fuera del contenido
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal || e.target.classList.contains('modal-presidenta-backdrop')) {
+                modal.style.display = 'none';
+                if (window.innerWidth <= 991) {
+                  document.body.style.overflow = '';
+                  document.documentElement.style.overflow = '';
+                } else {
+                  document.body.style.overflow = '';
+                }
+            }
+        });
     }
 });

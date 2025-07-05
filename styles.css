@@ -1585,19 +1585,4 @@ body {
   .modal-presidenta-content {
     box-shadow: 0 12px 40px rgba(0,0,0,0.55) !important;
   }
-}
-
-@keyframes whatsapp-bounce {
-  0%, 100% { transform: scale(1); }
-  20% { transform: scale(1.2); }
-  40% { transform: scale(0.95); }
-  60% { transform: scale(1.1); }
-  80% { transform: scale(0.98); }
-}
-
-.footer-action-buttons a[href*="wa.me"] i,
-.footer-action-buttons a[href*="whatsapp"] i {
-  animation: whatsapp-bounce 1.2s infinite;
-  color: #25D366 !important;
-  filter: drop-shadow(0 0 6px #25D366);
 } 

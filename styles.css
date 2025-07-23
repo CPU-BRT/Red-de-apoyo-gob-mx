@@ -400,9 +400,10 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    height: auto;
-    background: #611232 url('MARGEN/MARGEN INFERIOR DE LA PAGINA') repeat-x center;
-    background-size: auto 64px;
+    height: 52px;
+    min-height: 52px;
+    background: #611232 url('MARGEN/MARGEN INFERIOR DE LA PAGINA.png') repeat-x center;
+    background-size: auto 52px;
     z-index: 1000;
     width: 100vw;
     pointer-events: none;
@@ -880,6 +881,7 @@ section {
 }
 
 .footer-action-buttons {
+    background: #611232 !important;
     position: static;
     right: unset;
     bottom: unset;
@@ -892,7 +894,7 @@ section {
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding: 8px 0;
+    padding: 24px 0;
 }
 
 .footer-action-buttons a {

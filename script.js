@@ -81,14 +81,14 @@ const videos = [
 
     // --- CARRUSEL DE VIDEOS DE YOUTUBE CON API OFICIAL ---
     const youtubeVideos = [
-        { id: 'of79FUoFAjs', title: '1' },
-        { id: '_eIcJYVSl0I', title: '2' },
-        { id: 'rupwv2W1Qec', title: '3' },
-        { id: 'I8iyua0SUwM', title: '4' },
-        { id: 'D9-gHvhsLkM', title: '5' },
-        { id: 'BLxLy9OZ3vc', title: '6' },
-        { id: 'J-YtggCoBLk', title: '7' },
-        { id: 'MrSmFfBM3PY', title: '8' },
+        { id: 'yUxKdSWLVXc', title: '1' },
+        { id: 'of79FUoFAjs', title: '2' },
+        { id: '_eIcJYVSl0I', title: '3' },
+        { id: 'rupwv2W1Qec', title: '4' },
+        { id: 'I8iyua0SUwM', title: '5' },
+        { id: 'D9-gHvhsLkM', title: '6' },
+        { id: 'BLxLy9OZ3vc', title: '7' },
+        { id: 'J-YtggCoBLk', title: '8' },
         { id: 'MrSmFfBM3PY', title: '9' },
         { id: 'oSjFnKd6_L4', title: '10' },
         { id: 'kmQLQTEuQLQ', title: '11' },

@@ -34,7 +34,7 @@ const videos = [
 
     // Botón WhatsApp
     const btnWhats = document.createElement('a');
-    btnWhats.href = 'https://wa.me/5215513655749';
+    btnWhats.href = 'https://wa.me/5215545470797';
     btnWhats.target = '_blank';
     btnWhats.className = 'btn btn-contacto';
     btnWhats.innerHTML = '<i class="fab fa-whatsapp"></i>';
@@ -61,13 +61,6 @@ const videos = [
     btnTel1.className = 'btn btn-contacto';
     btnTel1.innerHTML = '<i class="fas fa-phone"></i> Ext 3220';
     btnsContainer.appendChild(btnTel1);
-
-    // Botón Teléfono 2
-    const btnTel2 = document.createElement('a');
-    btnTel2.href = 'tel:5588981856,,3110';
-    btnTel2.className = 'btn btn-contacto';
-    btnTel2.innerHTML = '<i class="fas fa-phone"></i> Ext 3110';
-    btnsContainer.appendChild(btnTel2);
 
     // Botón Teléfono 3
     const btnTel3 = document.createElement('a');

@@ -34,7 +34,7 @@ const videos = [
 
     // Botón WhatsApp
     const btnWhats = document.createElement('a');
-    btnWhats.href = 'https://wa.me/5215545470797';
+    btnWhats.href = 'https://wa.me/5255531360398';
     btnWhats.target = '_blank';
     btnWhats.className = 'btn btn-contacto';
     btnWhats.innerHTML = '<i class="fab fa-whatsapp"></i>';

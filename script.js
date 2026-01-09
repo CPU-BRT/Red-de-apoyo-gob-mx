@@ -57,7 +57,7 @@ const videos = [
 
     // Botón Teléfono 1
     const btnTel1 = document.createElement('a');
-    btnTel1.href = 'tel:525588985614';
+    btnTel1.href = 'tel:5588985614';
     btnTel1.className = 'btn btn-contacto';
     btnTel1.innerHTML = '<i class="fas fa-phone"></i>';
     btnsContainer.appendChild(btnTel1);

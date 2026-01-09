@@ -55,12 +55,19 @@ const videos = [
     btnMail.innerHTML = '<i class="fas fa-envelope"></i>';
     btnsContainer.appendChild(btnMail);
 
-    // Botón Teléfono único
-    const btnTel = document.createElement('a');
-    btnTel.href = 'tel:5588983605,,3';
-    btnTel.className = 'btn btn-contacto';
-    btnTel.innerHTML = '<i class="fas fa-phone"></i> Ext 3 y 4';
-    btnsContainer.appendChild(btnTel);
+    // Botón Teléfono 1
+    const btnTel1 = document.createElement('a');
+    btnTel1.href = 'tel:525588985614';
+    btnTel1.className = 'btn btn-contacto';
+    btnTel1.innerHTML = '<i class="fas fa-phone"></i>';
+    btnsContainer.appendChild(btnTel1);
+
+    // Botón Teléfono 2
+    const btnTel2 = document.createElement('a');
+    btnTel2.href = 'tel:525583051172';
+    btnTel2.className = 'btn btn-contacto';
+    btnTel2.innerHTML = '<i class="fas fa-phone"></i>';
+    btnsContainer.appendChild(btnTel2);
 
     // Agregar los botones a la franja inferior
     // document.querySelector('.footer-pleca').appendChild(btnsContainer); // Eliminado porque ya no existe .footer-pleca

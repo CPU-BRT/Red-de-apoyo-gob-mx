@@ -115,6 +115,17 @@ body {
     margin-right: 10px;
 }
 
+.contact-info .contact-phone-link {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-info .contact-phone-link:hover {
+    color: #611232;
+    text-decoration: underline;
+}
+
 .contact-form {
     background-color: white;
     padding: 2rem;

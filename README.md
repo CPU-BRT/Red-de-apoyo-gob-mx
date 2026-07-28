@@ -43,4 +43,4 @@ Sitio web profesional para AVIF, la red de apoyo antifraude número 1 en recuper
 
 Para soporte o consultas, contacta a:
 - Email: iniciar@atencion-aclientes-avif.org
-- WhatsApp: 55 1618 1754 
+- Teléfonos: 5555001480, 5632752228, 5632750514, 5632759682 

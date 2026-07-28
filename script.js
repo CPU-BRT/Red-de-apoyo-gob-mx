@@ -32,14 +32,6 @@ const videos = [
     const btnsContainer = document.createElement('div');
     btnsContainer.className = 'footer-action-buttons';
 
-    // Botón WhatsApp
-    const btnWhats = document.createElement('a');
-    btnWhats.href = 'https://wa.me/5255531360398';
-    btnWhats.target = '_blank';
-    btnWhats.className = 'btn btn-contacto';
-    btnWhats.innerHTML = '<i class="fab fa-whatsapp"></i>';
-    btnsContainer.appendChild(btnWhats);
-
     // Botón Facebook
     const btnFb = document.createElement('a');
     btnFb.href = 'https://www.facebook.com/profile.php?id=61572689940132&locale=es_LA';
@@ -55,19 +47,12 @@ const videos = [
     btnMail.innerHTML = '<i class="fas fa-envelope"></i>';
     btnsContainer.appendChild(btnMail);
 
-    // Botón Teléfono 1
-    const btnTel1 = document.createElement('a');
-    btnTel1.href = 'tel:5588985614';
-    btnTel1.className = 'btn btn-contacto';
-    btnTel1.innerHTML = '<i class="fas fa-phone"></i>';
-    btnsContainer.appendChild(btnTel1);
-
-    // Botón Teléfono 2
-    const btnTel2 = document.createElement('a');
-    btnTel2.href = 'tel:5583051172';
-    btnTel2.className = 'btn btn-contacto';
-    btnTel2.innerHTML = '<i class="fas fa-phone"></i>';
-    btnsContainer.appendChild(btnTel2);
+    // Botón Teléfono
+    const btnTel = document.createElement('a');
+    btnTel.href = 'tel:5555001480';
+    btnTel.className = 'btn btn-contacto';
+    btnTel.innerHTML = '<i class="fas fa-phone"></i>';
+    btnsContainer.appendChild(btnTel);
 
     // Agregar los botones a la franja inferior
     // document.querySelector('.footer-pleca').appendChild(btnsContainer); // Eliminado porque ya no existe .footer-pleca

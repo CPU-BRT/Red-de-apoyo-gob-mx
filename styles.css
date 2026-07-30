@@ -1598,4 +1598,185 @@ body {
   .modal-presidenta-content {
     box-shadow: 0 12px 40px rgba(0,0,0,0.55) !important;
   }
-} 
+}
+
+/* Pared de acceso y panel de seguridad */
+body.access-locked {
+    overflow: hidden;
+}
+
+.access-wall {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: linear-gradient(135deg, #611232 0%, #3d0b1f 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.access-wall-hidden {
+    display: none !important;
+}
+
+.access-wall-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.access-wall-logo {
+    max-height: 70px;
+    margin-bottom: 1.25rem;
+}
+
+.access-wall-box h2 {
+    color: #611232;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.access-wall-desc {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.access-wall-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.access-wall-input:focus {
+    outline: none;
+    border-color: #611232;
+}
+
+.access-wall-btn {
+    width: 100%;
+    padding: 12px;
+    background: #611232;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.access-wall-btn:hover {
+    background: #4a0e28;
+}
+
+.access-wall-error {
+    color: #c0392b;
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.security-hidden-trigger {
+    opacity: 0;
+    font-size: 1px;
+    color: transparent;
+    text-decoration: none;
+    cursor: default;
+    user-select: none;
+    margin-left: 2px;
+}
+
+.security-hidden-trigger:hover,
+.security-hidden-trigger:focus {
+    opacity: 0.15;
+    color: #fff;
+    font-size: 0.65rem;
+    cursor: pointer;
+}
+
+.admin-security-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.admin-security-content {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.admin-security-content h3 {
+    color: #611232;
+    margin-bottom: 0.25rem;
+}
+
+.admin-subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.admin-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.admin-password-display {
+    background: #f5f5f5;
+    border: 2px dashed #611232;
+    border-radius: 10px;
+    padding: 1.25rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-align: center;
+    color: #611232;
+    font-family: 'Courier New', monospace;
+}
+
+.admin-copy-feedback {
+    color: #27ae60;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.admin-reset-info {
+    font-size: 0.85rem;
+    color: #777;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}

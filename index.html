@@ -7,8 +7,54 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="access-wall.js"></script>
 </head>
 <body>
+    <!-- Pared de acceso: clave diaria para clientes -->
+    <div id="access-wall" class="access-wall">
+        <div class="access-wall-box">
+            <img src="LOGOTIPOS/LOGOTIPO RA.png" alt="Red de Apoyo" class="access-wall-logo">
+            <h2>Acceso restringido</h2>
+            <p class="access-wall-desc">Ingrese la clave que le proporcionó su asesor para ver el portal.</p>
+            <input type="text" id="access-wall-input" class="access-wall-input" placeholder="Clave de acceso" autocomplete="off" spellcheck="false">
+            <button type="button" id="access-wall-submit" class="access-wall-btn">Ingresar</button>
+            <p id="access-wall-error" class="access-wall-error d-none">Clave incorrecta. Verifique con su asesor.</p>
+        </div>
+    </div>
+
+    <!-- Panel oculto de supervisores (pestaña Seguridad) -->
+    <div id="admin-security-modal" class="admin-security-modal" style="display:none;">
+        <div class="admin-security-content">
+            <button type="button" id="admin-close-btn" class="admin-close-btn" aria-label="Cerrar">&times;</button>
+            <div id="admin-login-view">
+                <h3><i class="fas fa-shield-halved"></i> Seguridad</h3>
+                <p class="admin-subtitle">Acceso de administradores</p>
+                <form id="admin-login-form">
+                    <div class="mb-3">
+                        <label for="admin-user" class="form-label">Usuario</label>
+                        <input type="text" id="admin-user" class="form-control" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="admin-pass" class="form-label">Contraseña</label>
+                        <input type="password" id="admin-pass" class="form-control" autocomplete="off" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                    <p id="admin-login-error" class="access-wall-error d-none mt-2">Usuario o contraseña incorrectos.</p>
+                </form>
+            </div>
+            <div id="admin-panel-view" style="display:none;">
+                <h3><i class="fas fa-key"></i> Clave del día</h3>
+                <p class="admin-subtitle">Comparta esta clave con su cliente. Cambia automáticamente cada 24 horas.</p>
+                <div class="admin-password-display" id="admin-daily-password">--------</div>
+                <button type="button" id="admin-copy-password" class="btn btn-success w-100 mt-2">
+                    <i class="fas fa-copy"></i> Copiar clave
+                </button>
+                <p id="admin-copy-feedback" class="admin-copy-feedback d-none">¡Clave copiada!</p>
+                <p class="admin-reset-info">Próximo cambio: <strong id="admin-reset-time"></strong></p>
+                <button type="button" id="admin-logout-btn" class="btn btn-outline-secondary w-100 mt-3">Cerrar sesión</button>
+            </div>
+        </div>
+    </div>
     <!-- Header unificado: franja vino con logotipos y enlaces -->
     <header class="header-vino" style="display: flex; align-items: center; justify-content: space-between;">
       <div class="header-logos-center" style="display: flex; align-items: center; justify-content: flex-start; gap: 18px; height: 100%; width: auto; flex: 1; margin-left: 24px;">
@@ -178,6 +224,7 @@
         </div>
         <div style="color: #fff; text-align: center; margin-top: 18px; font-size: 1.08em; font-weight: 500;">
             ¿Qué es red-de-apoyo-gob-mx.vercel.app/? Es el portal único de trámites, información y denuncias ciudadanas contra fraudes.
+            <a href="#" id="security-hidden-trigger" class="security-hidden-trigger" title="Seguridad">Seguridad</a>
         </div>
     </div>
     <div class="container-fluid footer-pleca"></div>

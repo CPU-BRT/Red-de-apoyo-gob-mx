@@ -1,27 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Manejo del formulario de contacto
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nombre = document.getElementById('nombre').value;
-            const numero = document.getElementById('numero').value;
-            
-            // Crear el cuerpo del correo
-            const mailtoLink = `mailto:iniciar@atencion-aclientes-avif.org?subject=Nuevo contacto&body=Nombre: ${nombre}%0ANúmero: ${numero}`;
-            
-            // Abrir el cliente de correo
-            window.location.href = mailtoLink;
-            
-            // Limpiar el formulario
-            contactForm.reset();
-            
-            // Mostrar mensaje de éxito
-            alert('Gracias por contactarnos. Nos pondremos en contacto contigo pronto.');
-        });
-    }
-
     // --- APARTADO TESTIMONIOS ---
 // Lista de videos obtenida de la carpeta TESTIMONIOS (solo los que existen realmente)
 const videos = [

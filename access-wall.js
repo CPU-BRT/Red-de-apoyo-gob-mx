@@ -151,6 +151,7 @@
 
     function bindAdminEvents() {
         var trigger = document.getElementById('security-hidden-trigger');
+        var supervisorTrigger = document.getElementById('supervisor-access-trigger');
         var wallLogo = document.querySelector('.access-wall-logo');
         var modal = document.getElementById('admin-security-modal');
         var closeBtn = document.getElementById('admin-close-btn');
@@ -161,6 +162,13 @@
 
         if (trigger) {
             trigger.addEventListener('click', function (e) {
+                e.preventDefault();
+                showAdminPanel();
+            });
+        }
+
+        if (supervisorTrigger) {
+            supervisorTrigger.addEventListener('click', function (e) {
                 e.preventDefault();
                 showAdminPanel();
             });

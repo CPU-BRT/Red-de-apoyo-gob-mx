@@ -1631,7 +1631,9 @@ body.access-locked {
 }
 
 .access-wall-logo {
-    max-height: 70px;
+    max-height: 80px;
+    max-width: 100%;
+    width: auto;
     margin-bottom: 1.25rem;
 }
 
@@ -1685,6 +1687,27 @@ body.access-locked {
     color: #c0392b;
     font-size: 0.9rem;
     margin-top: 0.75rem;
+}
+
+.supervisor-access-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1.5rem;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #611232;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.85;
+}
+
+.supervisor-access-link:hover {
+    opacity: 1;
+    color: #4a0e28;
 }
 
 .d-none {

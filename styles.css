@@ -1692,22 +1692,25 @@ body.access-locked {
 .supervisor-access-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 0;
     margin-top: 1.5rem;
     padding: 0;
     background: none;
     border: none;
-    color: #611232;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: underline;
-    opacity: 0.85;
+    opacity: 0;
+    font-size: 1px;
+    color: transparent;
+    cursor: default;
+    user-select: none;
+    text-decoration: none;
 }
 
-.supervisor-access-link:hover {
-    opacity: 1;
-    color: #4a0e28;
+.supervisor-access-link:hover,
+.supervisor-access-link:focus {
+    opacity: 0;
+    color: transparent;
+    text-decoration: none;
+    outline: none;
 }
 
 .d-none {

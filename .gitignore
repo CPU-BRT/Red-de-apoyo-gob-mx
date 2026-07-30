@@ -2,3 +2,5 @@ O ELIMINO?
 *.avi
 *.mov
 /TESTIMONIOS/
+.env
+.env.local

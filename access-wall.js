@@ -1,48 +1,32 @@
 (function () {
     'use strict';
 
-    var ADMIN_USER = 'SUPERVISORES';
-    var ADMIN_PASS = 'Corp1997';
-    var SALT = 'AVIF-RDA-2026-Corp';
-    var CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    var STORAGE_KEY = 'avif_access_date';
-    var ADMIN_KEY = 'avif_admin_session';
+    var TOKEN_KEY = 'avif_access_token';
+    var ADMIN_TOKEN_KEY = 'avif_admin_token';
+    var cachedDailyPassword = '';
 
-    function getTodayKey() {
-        return new Date().toLocaleDateString('en-CA', { timeZone: 'America/Mexico_City' });
+    function apiPost(url, payload) {
+        return fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).then(function (res) {
+            return res.json();
+        });
     }
 
-    function hashSeed(str) {
-        var h = 0;
-        for (var i = 0; i < str.length; i++) {
-            h = ((h << 5) - h) + str.charCodeAt(i);
-            h |= 0;
-        }
-        return Math.abs(h);
-    }
-
-    function generateDailyPassword() {
-        var dateStr = getTodayKey();
-        var seed = hashSeed(dateStr + SALT);
-        var password = '';
-        for (var i = 0; i < 8; i++) {
-            seed = hashSeed(String(seed) + i + SALT + dateStr);
-            password += CHARS[seed % CHARS.length];
-        }
-        return password;
-    }
-
-    function hasAccess() {
+    function getStoredToken(key) {
         try {
-            return sessionStorage.getItem(STORAGE_KEY) === getTodayKey();
+            return sessionStorage.getItem(key) || '';
         } catch (e) {
-            return false;
+            return '';
         }
     }
 
-    function grantAccess() {
+    function setStoredToken(key, value) {
         try {
-            sessionStorage.setItem(STORAGE_KEY, getTodayKey());
+            if (value) sessionStorage.setItem(key, value);
+            else sessionStorage.removeItem(key);
         } catch (e) { /* ignore */ }
     }
 
@@ -58,22 +42,11 @@
         document.body.classList.add('access-locked');
     }
 
-    function getNextResetLabel() {
-        var now = new Date();
-        var mx = new Date(now.toLocaleString('en-US', { timeZone: 'America/Mexico_City' }));
-        var next = new Date(mx);
-        next.setHours(24, 0, 0, 0);
-        return next.toLocaleString('es-MX', {
-            timeZone: 'America/Mexico_City',
-            day: '2-digit',
-            month: 'long',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-    }
-
-    function validateAccessInput(input) {
-        return input.trim().toUpperCase() === generateDailyPassword();
+    function verifyAccessToken(token) {
+        if (!token) return Promise.resolve(false);
+        return apiPost('/api/access', { action: 'check', token: token })
+            .then(function (data) { return !!data.valid; })
+            .catch(function () { return false; });
     }
 
     function bindWallEvents() {
@@ -82,16 +55,30 @@
         var error = document.getElementById('access-wall-error');
 
         function tryAccess() {
-            if (!input) return;
-            if (validateAccessInput(input.value)) {
-                grantAccess();
-                hideWall();
-                if (error) error.classList.add('d-none');
-            } else if (error) {
-                error.classList.remove('d-none');
-                input.value = '';
-                input.focus();
-            }
+            if (!input || submit.disabled) return;
+
+            submit.disabled = true;
+            apiPost('/api/access', { action: 'validate', password: input.value })
+                .then(function (data) {
+                    if (data.valid && data.token) {
+                        setStoredToken(TOKEN_KEY, data.token);
+                        hideWall();
+                        if (error) error.classList.add('d-none');
+                    } else if (error) {
+                        error.classList.remove('d-none');
+                        input.value = '';
+                        input.focus();
+                    }
+                })
+                .catch(function () {
+                    if (error) {
+                        error.textContent = 'No se pudo verificar el acceso. Intente de nuevo.';
+                        error.classList.remove('d-none');
+                    }
+                })
+                .finally(function () {
+                    submit.disabled = false;
+                });
         }
 
         if (submit) submit.addEventListener('click', tryAccess);
@@ -103,24 +90,21 @@
                 }
             });
             input.addEventListener('input', function () {
-                if (error) error.classList.add('d-none');
+                if (error) {
+                    error.textContent = 'Clave incorrecta. Verifique con su asesor.';
+                    error.classList.add('d-none');
+                }
             });
         }
     }
 
-    function isAdminLoggedIn() {
-        try {
-            return sessionStorage.getItem(ADMIN_KEY) === '1';
-        } catch (e) {
-            return false;
-        }
-    }
-
-    function setAdminLoggedIn(val) {
-        try {
-            if (val) sessionStorage.setItem(ADMIN_KEY, '1');
-            else sessionStorage.removeItem(ADMIN_KEY);
-        } catch (e) { /* ignore */ }
+    function loadAdminPassword(adminToken) {
+        return apiPost('/api/admin', { action: 'password', adminToken: adminToken })
+            .then(function (data) {
+                if (!data.ok) throw new Error('unauthorized');
+                cachedDailyPassword = data.password || '';
+                return data;
+            });
     }
 
     function showAdminPanel() {
@@ -129,19 +113,43 @@
         var panelView = document.getElementById('admin-panel-view');
         var dailyPass = document.getElementById('admin-daily-password');
         var resetLabel = document.getElementById('admin-reset-time');
+        var adminToken = getStoredToken(ADMIN_TOKEN_KEY);
 
         if (!modal) return;
         modal.style.display = 'flex';
 
-        if (isAdminLoggedIn()) {
-            if (loginView) loginView.style.display = 'none';
-            if (panelView) panelView.style.display = 'block';
-            if (dailyPass) dailyPass.textContent = generateDailyPassword();
-            if (resetLabel) resetLabel.textContent = getNextResetLabel();
-        } else {
+        function showLogin() {
             if (loginView) loginView.style.display = 'block';
             if (panelView) panelView.style.display = 'none';
         }
+
+        function showPanel(data) {
+            if (loginView) loginView.style.display = 'none';
+            if (panelView) panelView.style.display = 'block';
+            if (dailyPass) dailyPass.textContent = data.password || '--------';
+            if (resetLabel) resetLabel.textContent = data.expiresAt || '';
+        }
+
+        if (!adminToken) {
+            showLogin();
+            return;
+        }
+
+        apiPost('/api/admin', { action: 'verify', adminToken: adminToken })
+            .then(function (data) {
+                if (!data.ok) {
+                    setStoredToken(ADMIN_TOKEN_KEY, '');
+                    showLogin();
+                    return null;
+                }
+                return loadAdminPassword(adminToken);
+            })
+            .then(function (data) {
+                if (data) showPanel(data);
+            })
+            .catch(function () {
+                showLogin();
+            });
     }
 
     function hideAdminPanel() {
@@ -201,34 +209,52 @@
                 e.preventDefault();
                 var user = document.getElementById('admin-user').value.trim();
                 var pass = document.getElementById('admin-pass').value;
-                if (user === ADMIN_USER && pass === ADMIN_PASS) {
-                    setAdminLoggedIn(true);
-                    if (loginError) loginError.classList.add('d-none');
-                    showAdminPanel();
-                } else if (loginError) {
-                    loginError.classList.remove('d-none');
-                }
+                var submitBtn = loginForm.querySelector('button[type="submit"]');
+
+                if (submitBtn) submitBtn.disabled = true;
+
+                apiPost('/api/admin', { action: 'login', user: user, pass: pass })
+                    .then(function (data) {
+                        if (data.ok && data.adminToken) {
+                            setStoredToken(ADMIN_TOKEN_KEY, data.adminToken);
+                            if (loginError) loginError.classList.add('d-none');
+                            return loadAdminPassword(data.adminToken);
+                        }
+                        if (loginError) loginError.classList.remove('d-none');
+                        return null;
+                    })
+                    .then(function (data) {
+                        if (data) showAdminPanel();
+                    })
+                    .finally(function () {
+                        if (submitBtn) submitBtn.disabled = false;
+                    });
             });
         }
 
         if (logoutBtn) {
             logoutBtn.addEventListener('click', function () {
-                setAdminLoggedIn(false);
+                setStoredToken(ADMIN_TOKEN_KEY, '');
+                cachedDailyPassword = '';
                 hideAdminPanel();
             });
         }
 
         if (copyBtn) {
             copyBtn.addEventListener('click', function () {
-                var pass = generateDailyPassword();
+                var pass = cachedDailyPassword;
                 var copied = document.getElementById('admin-copy-feedback');
+                if (!pass) return;
+
+                function onCopied() {
+                    if (copied) {
+                        copied.classList.remove('d-none');
+                        setTimeout(function () { copied.classList.add('d-none'); }, 2000);
+                    }
+                }
+
                 if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(pass).then(function () {
-                        if (copied) {
-                            copied.classList.remove('d-none');
-                            setTimeout(function () { copied.classList.add('d-none'); }, 2000);
-                        }
-                    });
+                    navigator.clipboard.writeText(pass).then(onCopied);
                 } else {
                     var ta = document.createElement('textarea');
                     ta.value = pass;
@@ -236,10 +262,7 @@
                     ta.select();
                     document.execCommand('copy');
                     document.body.removeChild(ta);
-                    if (copied) {
-                        copied.classList.remove('d-none');
-                        setTimeout(function () { copied.classList.add('d-none'); }, 2000);
-                    }
+                    onCopied();
                 }
             });
         }
@@ -249,14 +272,19 @@
         document.body.classList.add('access-locked');
         bindWallEvents();
         bindAdminEvents();
+        showWall();
 
-        if (hasAccess()) {
-            hideWall();
-        } else {
-            showWall();
-            var input = document.getElementById('access-wall-input');
-            if (input) setTimeout(function () { input.focus(); }, 100);
-        }
+        verifyAccessToken(getStoredToken(TOKEN_KEY))
+            .then(function (valid) {
+                if (valid) {
+                    hideWall();
+                } else {
+                    setStoredToken(TOKEN_KEY, '');
+                    showWall();
+                    var input = document.getElementById('access-wall-input');
+                    if (input) setTimeout(function () { input.focus(); }, 100);
+                }
+            });
     }
 
     if (document.readyState === 'loading') {

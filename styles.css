@@ -1690,27 +1690,31 @@ body.access-locked {
 }
 
 .supervisor-access-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0;
-    margin-top: 1.5rem;
-    padding: 0;
-    background: none;
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 1rem;
+    padding: 12px;
+    background: transparent;
     border: none;
     opacity: 0;
-    font-size: 1px;
     color: transparent;
-    cursor: default;
-    user-select: none;
-    text-decoration: none;
+    font-size: 0;
+    line-height: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
 }
 
 .supervisor-access-link:hover,
-.supervisor-access-link:focus {
+.supervisor-access-link:focus,
+.supervisor-access-link:active {
     opacity: 0;
     color: transparent;
-    text-decoration: none;
+    background: transparent;
     outline: none;
+    box-shadow: none;
 }
 
 .d-none {
